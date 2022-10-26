@@ -1,0 +1,10 @@
+{
+  "actionButtons": {
+    "commands": [
+      {
+        "name": "Dev",
+        "command": "npm run dev",
+      }
+    ]
+  },
+}
