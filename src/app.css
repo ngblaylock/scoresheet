@@ -3,8 +3,12 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    font-family: 'Patrick Hand', cursive;
-    font-size: 20px;
-  }
+	html {
+		font-family: 'Patrick Hand', cursive;
+		font-size: 20px;
+		background: url('/grid-bg.svg');
+	}
+	body:not(.bg-dark) {
+		background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+	}
 }
