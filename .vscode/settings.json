@@ -7,4 +7,9 @@
       }
     ]
   },
+  "path-autocomplete.pathMappings": {
+    "/": [
+      "${folder}/static"
+    ],
+  }
 }
