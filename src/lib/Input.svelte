@@ -1,10 +1,8 @@
 <script lang="ts">
-	import { compute_slots } from 'svelte/internal';
-
-	export let type: string = 'text';
+	export let value = "defaultHeader";
 </script>
 
 <div class="flex border border-dark rounded-lg overflow-hidden">
-	<input {type} class="px-3 py-2 flex-auto" />
+	<input type="text" class="py-2 px-2 flex-1 text-center" bind:value />
 	<slot name="append" />
 </div>
