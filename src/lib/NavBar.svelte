@@ -8,11 +8,11 @@
 	const menuLinks = [
 		{
 			name: 'Restart',
-			url: '/game/setup'
+			url: '/game/setup?restart=true'
 		},
 		{
 			name: 'New Game',
-			url: '/'
+			url: '/game/setup'
 		},
 		{
 			name: 'Add Player',
