@@ -1,17 +1,24 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-  import sortBy from 'lodash/sortBy';
+	import sortBy from 'lodash/sortBy';
 	import Button from '$lib/Button.svelte';
 	import Title from '$lib/Title.svelte';
 	import Card from '$lib/Card.svelte';
-	let players: { name: string; score: number }[] = [];
+	import type { Player } from '$lib/types';
+	let players: Player[] = [];
+	let round:number = 0;
 	onMount(() => {
-		players = JSON.parse(localStorage.getItem('players') || '{}');
-    players = sortBy(players, ['score'])
+		players = JSON.parse(localStorage.getItem('players') || '[]');
+		players = sortBy(players, ['score']);
+		round = players[0].rounds.length;
 	});
 </script>
 
-<Title>Round 3</Title>
+{#if round}
+	 <Title>Round {round}</Title>
+{:else}
+	<Title>Starting Score</Title>
+{/if}
 
 {#each players as player}
 	<Card classList="mb-1">
