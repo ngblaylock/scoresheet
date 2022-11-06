@@ -5,26 +5,46 @@
 	import Title from '$lib/Title.svelte';
 	import Card from '$lib/Card.svelte';
 	import type { Player } from '$lib/types';
+
+	// Data
 	let players: Player[] = [];
-	let round:number = 0;
+	let sortedPlayers: Player[] = [];
+	let round: number = 0;
+
+	// Methods
+	const getTotalScore = (rounds: number[]): number => {
+		return rounds.reduce((prev, current) => {
+			return prev + current;
+		}, 0);
+	};
+
+	// Computed
+	$: if (players.length) {
+		sortedPlayers = sortBy(players, [
+			function (player) {
+				return getTotalScore(player.rounds);
+			}
+		]);
+	}
+
+	// Mounted
 	onMount(() => {
 		players = JSON.parse(localStorage.getItem('players') || '[]');
-		players = sortBy(players, ['score']);
 		round = players[0].rounds.length;
 	});
 </script>
 
 {#if round}
-	 <Title>Round {round}</Title>
+	<Title>Round {round}</Title>
 {:else}
 	<Title>Starting Score</Title>
 {/if}
 
-{#each players as player}
+{#each sortedPlayers as player}
 	<Card classList="mb-1">
 		<div class="flex justify-between">
 			{player.name}
-			<span>{player.score}</span>
+			<span>{getTotalScore(player.rounds)}</span>
 		</div>
 	</Card>
 {/each}

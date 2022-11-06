@@ -1,10 +1,11 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import Button from '$lib/Button.svelte';
 	import Card from '$lib/Card.svelte';
 	import Input from '$lib/Input.svelte';
 	import { onMount } from 'svelte';
 	import type { Player } from '$lib/types';
-	import { getPlayers } from '$lib/functions';
+	import { getPlayers, setPlayers } from '$lib/functions';
 	onMount(() => {
 		players = getPlayers();
 		players.forEach((p) => {
@@ -15,17 +16,14 @@
 	});
 	const getTotal = (rounds: number[], index: number): number => {
 		let total = 0;
-		console.log(rounds, index);
 		for(let x = 0; x <= index; x++){
 			total = total + rounds[x];
-		}
-		console.log(total);
-		
+		}		
 		return total;
 	};
 	const setScores = () => {
-		console.log(players);
-		
+		setPlayers(players);
+		goto(`/game/scores`);
 	}
 	let players: Player[] = [];
 	let currentRound: number = 0;

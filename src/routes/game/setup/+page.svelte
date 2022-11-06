@@ -8,28 +8,20 @@
 	import Checkbox from '$lib/Checkbox.svelte';
 	import type { Player } from '$lib/types';
 	import { getPlayers, setPlayers } from '$lib/functions';
-	onMount(() => {
-		focusInput();
-		if ($page.url.searchParams.get('restart')) {
-			let storedPlayers: Player[] = getPlayers();
-			if (storedPlayers && storedPlayers.length) {
-				storedPlayers.forEach((p) => (p.score = 0));
-			}
-			players = storedPlayers;
-		} else {
-			localStorage.removeItem('players');
-		}
-	});
+
+	// Data
 	let players: Player[] = [];
 	let newPlayer: string = '';
+	let lowestScoreWins: boolean = true;
+
+	// Methods
 	const focusInput = () => {
 		document.getElementById('new-player-name')?.focus();
 	};
 	const addPlayer = () => {
 		if (newPlayer) {
-			players.push({ name: newPlayer, score: 0, rounds: [] });
-			players = players;			
-			// newPlayer = '';
+			players.push({ name: newPlayer, rounds: [] });
+			players = players;
 			let input: any = document.querySelector('#new-player-name');
 			input.value = '';
 			newPlayer = '';
@@ -41,6 +33,26 @@
 		players = players.filter((p, i) => i !== index);
 		setPlayers(players);
 	};
+
+	// Watch/Computed
+	$: 	if (typeof(localStorage) != 'undefined') {
+			localStorage.setItem('lowestScoreWins', JSON.stringify(lowestScoreWins));
+	}
+
+	// Mounted
+	onMount(() => {
+		focusInput();
+		if ($page.url.searchParams.get('restart')) {
+			let storedPlayers: Player[] = getPlayers();
+			storedPlayers.forEach((p) => {
+				p.rounds = [];
+			});
+			players = storedPlayers;
+			setPlayers(players);
+		} else {
+			localStorage.removeItem('players');
+		}
+	});
 </script>
 
 <Title>Players</Title>
@@ -70,7 +82,7 @@
 <Button href="/game/scores">
 	<span slot="prepend">
 		<div>
-			<Checkbox classList="mb-3" checked>Lowest Score Wins</Checkbox>
+			<Checkbox classList="mb-3" bind:checked={lowestScoreWins}>Lowest Score Wins</Checkbox>
 		</div>
 	</span>
 	Start Game</Button
