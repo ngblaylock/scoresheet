@@ -20,7 +20,7 @@
 	};
 	const addPlayer = () => {
 		if (newPlayer) {
-			players.push({ name: newPlayer, rounds: [] });
+			players.push({ name: newPlayer, score: "-", rounds: [] });
 			players = players;
 			let input: any = document.querySelector('#new-player-name');
 			input.value = '';
@@ -46,6 +46,7 @@
 			let storedPlayers: Player[] = getPlayers();
 			storedPlayers.forEach((p) => {
 				p.rounds = [];
+				p.score = '-';
 			});
 			players = storedPlayers;
 			setPlayers(players);

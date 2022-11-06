@@ -4,25 +4,19 @@
 	import Button from '$lib/Button.svelte';
 	import Title from '$lib/Title.svelte';
 	import Card from '$lib/Card.svelte';
-	import type { Player } from '$lib/types';
+	import type { Player, Score } from '$lib/types';
+	import {getTotal} from '$lib/functions';
 
 	// Data
 	let players: Player[] = [];
 	let sortedPlayers: Player[] = [];
 	let round: number = 0;
 
-	// Methods
-	const getTotalScore = (rounds: number[]): number => {
-		return rounds.reduce((prev, current) => {
-			return prev + current;
-		}, 0);
-	};
-
-	// Computed
+	// Computed/Watch
 	$: if (players.length) {
 		sortedPlayers = sortBy(players, [
 			function (player) {
-				return getTotalScore(player.rounds);
+				return getTotal(player);
 			}
 		]);
 	}
@@ -44,7 +38,7 @@
 	<Card classList="mb-1">
 		<div class="flex justify-between">
 			{player.name}
-			<span>{getTotalScore(player.rounds)}</span>
+			<span>{getTotal(player)}</span>
 		</div>
 	</Card>
 {/each}

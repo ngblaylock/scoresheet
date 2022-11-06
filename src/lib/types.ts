@@ -1,4 +1,7 @@
 export interface Player {
   name: string;
-  rounds: number[];
+  score: number | "-";
+  rounds: (number|'-')[];
 }
+
+export type Score = number | "-";

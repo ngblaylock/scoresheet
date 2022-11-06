@@ -2,12 +2,19 @@
 	export let value:number|string = "";
 	export let id: string;
 	export let type: string = 'text';
-	const handleInput = (e: any) => {
-    // in here, you can switch on type and implement
-    // whatever behaviour you need
-    value = type.match(/^(number|range)$/)
-      ? +e.target.value
-      : e.target.value;
+	const handleInput = (e: any) => { 
+    if(type.match(/^(number|range)$/)){
+      if(!!e.target.value){
+        // if any valid number
+        value = +e.target.value;
+      } else{
+        // empty field or a '-'
+        value = '-';
+      }
+      
+    } else{
+      value = e.target.value;
+    }
   };
 </script>
 

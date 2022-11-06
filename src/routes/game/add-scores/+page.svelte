@@ -4,35 +4,46 @@
 	import Card from '$lib/Card.svelte';
 	import Input from '$lib/Input.svelte';
 	import { onMount } from 'svelte';
-	import type { Player } from '$lib/types';
-	import { getPlayers, setPlayers } from '$lib/functions';
+	import type { Player, Score } from '$lib/types';
+	import { getPlayers, setPlayers, getTotal } from '$lib/functions';
+
+	// Data
+	let players: Player[] = [];
+	let currentRound: number = 0;
+
+	// Methods
+	
+	const setScores = () => {
+		setPlayers(players);
+		goto(`/game/scores`);
+	};
+
+	// Computed/Watch
+	$: {
+		players = players.map((player: Player) => {
+			return {
+				name: player.name,
+				score: getTotal(player),
+				rounds: player.rounds
+			};
+		});
+	}
+
+	// Mounted
 	onMount(() => {
 		players = getPlayers();
 		players.forEach((p) => {
-			p.rounds.push(0);
+			p.rounds.push('-');
 		});
 		players = players;
 		currentRound = players[0].rounds.length;
 	});
-	const getTotal = (rounds: number[], index: number): number => {
-		let total = 0;
-		for(let x = 0; x <= index; x++){
-			total = total + rounds[x];
-		}		
-		return total;
-	};
-	const setScores = () => {
-		setPlayers(players);
-		goto(`/game/scores`);
-	}
-	let players: Player[] = [];
-	let currentRound: number = 0;
 </script>
 
-{#each players as player}
+{#each players as player, playerId}
 	<Card classList="mt-4">
 		<div class="text-center text-2xl mb-2">{player.name}</div>
-		<div class="text-center text-3xl">{getTotal(player.rounds, player.rounds.length - 1)}</div>
+		<div class="text-center text-3xl">{player.score}</div>
 		<table class="table-auto w-full mt-4">
 			<thead>
 				<tr>
@@ -46,16 +57,20 @@
 					<tr>
 						<td class="text-center">{index + 1}</td>
 						<td class="text-center">{round}</td>
-						<td class="text-center">{getTotal(player.rounds, index)}</td>
+						<td class="text-center">{getTotal(player, index)}</td>
 					</tr>
 				{/each}
 			</tbody>
 		</table>
 		<label for="round-points" class="block text-center mt-5">Round {currentRound} Points</label>
 		<div class="w-36 mx-auto">
-			<Input type="number" id="round-points" bind:value={player.rounds[player.rounds.length - 1]} />
+			<Input
+				type="number"
+				id="round-points-{player.name.toLowerCase()}-{playerId}"
+				bind:value={player.rounds[player.rounds.length - 1]}
+			/>
 		</div>
 	</Card>
 {/each}
 
-<Button on:click="{setScores}">Done</Button>
+<Button on:click={setScores}>Done</Button>
