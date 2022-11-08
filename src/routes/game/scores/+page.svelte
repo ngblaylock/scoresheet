@@ -1,30 +1,37 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import sortBy from 'lodash/sortBy';
+	import orderby from 'lodash/orderby';
 	import Button from '$lib/Button.svelte';
 	import Title from '$lib/Title.svelte';
 	import Card from '$lib/Card.svelte';
 	import type { Player, Score } from '$lib/types';
-	import {getTotal} from '$lib/functions';
+	import { getTotal } from '$lib/functions';
+	import orderBy from 'lodash/orderby';
 
 	// Data
 	let players: Player[] = [];
 	let sortedPlayers: Player[] = [];
 	let round: number = 0;
+	let sortAsc: boolean = true;
 
 	// Computed/Watch
 	$: if (players.length) {
-		sortedPlayers = sortBy(players, [
-			function (player) {
-				return getTotal(player);
-			}
-		]);
+		sortedPlayers = orderBy(
+			players,
+			[
+				(player) => {
+					return getTotal(player);
+				}
+			],
+			[sortAsc ? 'asc' : 'desc']
+		);
 	}
 
 	// Mounted
 	onMount(() => {
 		players = JSON.parse(localStorage.getItem('players') || '[]');
 		round = players[0].rounds.length;
+		sortAsc = JSON.parse(localStorage.getItem('lowestScoreWins') || 'true');
 	});
 </script>
 

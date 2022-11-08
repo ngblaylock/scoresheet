@@ -3,6 +3,7 @@
 	export let variant: string = 'primary';
 	export let inline: boolean = false;
 	export let classList: string = '';
+	export let type: string = 'button';
 </script>
 
 <div class=" text-center {inline ? '' : 'mt-auto p-4'}">
@@ -17,6 +18,7 @@
 	{:else}
 		<button
 			on:click
+			{type}
 			class=" bg-{variant} text-light px-8 py-2 inline-block rounded-lg hover:brightness-105 active:brightness-110 {classList}"
 		>
 			<slot />

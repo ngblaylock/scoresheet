@@ -1,21 +1,70 @@
 <script lang="ts">
 	import Title from '$lib/Title.svelte';
 	import Input from '$lib/Input.svelte';
-  import Button from '$lib/Button.svelte';
+	import Button from '$lib/Button.svelte';
+	import { getPlayers, setPlayers } from '$lib/functions';
+	import type { Player, Score } from '$lib/types';
+	import { onMount } from 'svelte';
+	import { min, max } from 'lodash';
+	import { goto } from '$app/navigation';
+
+	// Data
+	let players: Player[] = [];
+	let scores: number[] = [];
+	let minScore: any = 0;
+	let maxScore: any = 0;
+	let avgScore: any = 0;
+	let newPlayer: Player = {
+		name: '',
+		score: 0,
+		rounds: []
+	};
+
+	// Methods
+	const addPlayer = () => {
+		players.push(newPlayer);
+		players = players;
+		setPlayers(players);
+		goto('/game/scores');
+	};
+
+	// Mounted
+	onMount(() => {
+		players = getPlayers();
+		players.forEach((p: Player) => {
+			if (typeof p.score == 'number') scores.push(p.score);
+		});
+		minScore = min(scores);
+		maxScore = max(scores);
+		avgScore = (
+			scores.reduce((prev: number, curr: number) => {
+				return prev + curr;
+			}, 0) / scores.length
+		).toFixed(1);
+		newPlayer.rounds = players[0].rounds.map((r) => {
+			return '-';
+		});
+	});
 </script>
 
 <Title>Add Player</Title>
+<form on:submit|preventDefault={addPlayer}>
+	<label for="new-player-name" class="block">Player Name</label>
+	<Input id="new-player-name" required bind:value={newPlayer.name} />
 
-<label for="new-player-name">Player Name</label>
-<Input id="new-player-name" />
+	<label for="new-player-score" class="block mt-2">Starting Score</label>
+	<Input
+		type="number"
+		id="new-player-score"
+		required
+		bind:value={newPlayer.rounds[newPlayer.rounds.length - 1]}
+	/>
 
-<label for="new-player-score" class="mt-3">Starting Score</label>
-<Input id="new-player-score" />
+	<div class="text-center font-sans text-sm text-gray-500 mt-4">
+		<div>MIN &mdash; {JSON.stringify(minScore)}</div>
+		<div>AVG &mdash; {avgScore}</div>
+		<div>MAX &mdash; {maxScore}</div>
+	</div>
 
-<div class="text-center font-sans text-sm text-gray-500 mt-4">
-  <div>MIN &mdash; 54</div>
-  <div>AVG &mdash; 145</div>
-  <div>MAX &mdash; 210</div>
-</div>
-
-<Button classList="mt-auto">Done</Button>
+	<Button classList="mt-auto" type="submit">Done</Button>
+</form>

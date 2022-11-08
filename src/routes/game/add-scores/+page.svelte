@@ -41,9 +41,17 @@
 </script>
 
 {#each players as player, playerId}
-	<Card classList="mt-4">
-		<div class="text-center text-2xl mb-2">{player.name}</div>
-		<div class="text-center text-3xl">{player.score}</div>
+<Card classList="mt-4">
+	<div class="text-center text-2xl mb-2">{player.name}</div>
+	<div class="text-center text-3xl">{player.score}</div>
+	<label for="round-points" class="block text-center">Round {currentRound} Points</label>
+	<div class="w-36 mx-auto">
+		<Input
+			type="number"
+			id="round-points-{player.name.toLowerCase()}-{playerId}"
+			bind:value={player.rounds[player.rounds.length - 1]}
+		/>
+	</div>
 		<table class="table-auto w-full mt-4">
 			<thead>
 				<tr>
@@ -62,14 +70,6 @@
 				{/each}
 			</tbody>
 		</table>
-		<label for="round-points" class="block text-center mt-5">Round {currentRound} Points</label>
-		<div class="w-36 mx-auto">
-			<Input
-				type="number"
-				id="round-points-{player.name.toLowerCase()}-{playerId}"
-				bind:value={player.rounds[player.rounds.length - 1]}
-			/>
-		</div>
 	</Card>
 {/each}
 

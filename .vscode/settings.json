@@ -9,7 +9,8 @@
   },
   "path-autocomplete.pathMappings": {
     "/": [
-      "${folder}/static"
+      "${folder}/static",
+      "${folder}/src/routes",
     ],
   }
 }

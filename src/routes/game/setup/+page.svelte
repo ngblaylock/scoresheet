@@ -80,7 +80,7 @@
 	<!-- TODO: Redo above to use "Enter to submit the form" -->
 </div>
 
-<Button href="/game/scores">
+<Button href="/game/add-scores/">
 	<span slot="prepend">
 		<div>
 			<Checkbox classList="mb-3" bind:checked={lowestScoreWins}>Lowest Score Wins</Checkbox>
