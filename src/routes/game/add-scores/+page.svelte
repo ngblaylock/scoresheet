@@ -31,7 +31,7 @@
 
 	// Mounted
 	onMount(() => {
-		players = getPlayers();
+		players = getPlayers();		
 		players.forEach((p) => {
 			p.rounds.push('-');
 		});
@@ -43,7 +43,7 @@
 {#each players as player, playerId}
 <Card classList="mt-4">
 	<div class="text-center text-2xl mb-2">{player.name}</div>
-	<div class="text-center text-3xl">{player.score}</div>
+	<div class="text-center text-3xl">{getTotal(player)}</div>
 	<label for="round-points" class="block text-center">Round {currentRound} Points</label>
 	<div class="w-36 mx-auto">
 		<Input

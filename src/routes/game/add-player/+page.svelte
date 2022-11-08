@@ -2,7 +2,7 @@
 	import Title from '$lib/Title.svelte';
 	import Input from '$lib/Input.svelte';
 	import Button from '$lib/Button.svelte';
-	import { getPlayers, setPlayers } from '$lib/functions';
+	import { getPlayers, getTotal, setPlayers } from '$lib/functions';
 	import type { Player, Score } from '$lib/types';
 	import { onMount } from 'svelte';
 	import { min, max } from 'lodash';
@@ -16,7 +16,6 @@
 	let avgScore: any = 0;
 	let newPlayer: Player = {
 		name: '',
-		score: 0,
 		rounds: []
 	};
 
@@ -31,9 +30,13 @@
 	// Mounted
 	onMount(() => {
 		players = getPlayers();
-		players.forEach((p: Player) => {
-			if (typeof p.score == 'number') scores.push(p.score);
-		});
+		players.forEach(player => {
+			let playerTotal = getTotal(player)
+			if(typeof(playerTotal) == 'number'){
+				scores.push(+playerTotal)
+			}
+		})
+		console.log(scores)
 		minScore = min(scores);
 		maxScore = max(scores);
 		avgScore = (

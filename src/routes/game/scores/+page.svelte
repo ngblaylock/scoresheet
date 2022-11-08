@@ -1,12 +1,11 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import orderby from 'lodash/orderby';
 	import Button from '$lib/Button.svelte';
 	import Title from '$lib/Title.svelte';
 	import Card from '$lib/Card.svelte';
 	import type { Player, Score } from '$lib/types';
 	import { getTotal } from '$lib/functions';
-	import orderBy from 'lodash/orderby';
+	import {orderBy} from 'lodash';
 
 	// Data
 	let players: Player[] = [];
@@ -16,6 +15,7 @@
 
 	// Computed/Watch
 	$: if (players.length) {
+		// TODO: This doesn't handle any '-'s
 		sortedPlayers = orderBy(
 			players,
 			[

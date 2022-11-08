@@ -1,32 +1,66 @@
 <script lang="ts">
 	import { slide } from 'svelte/transition';
 	import { navigating } from '$app/stores';
+	import { getPlayers } from '$lib/functions';
+	import type { Player } from '$lib/types';
 	import IconButton from '$lib/IconButton.svelte';
+	import { onMount } from 'svelte';
+	import { browser } from '$app/environment';
+
+	// Data
+	let disableMenuItem: boolean = true;
+	let showMenu: boolean = false;
+	let players: Player[] = [];
+
+	// Methods
 	const goBack = (): void => {
 		history.back();
 	};
-	const menuLinks = [
+	
+	// Computed/Watch
+	$: menuLinks = [
 		{
 			name: 'Restart',
-			url: '/game/setup?restart=true'
+			url: '/game/setup?restart=true',
+			disabled: false
 		},
 		{
 			name: 'New Game',
-			url: '/game/setup'
+			url: '/game/setup',
+			disabled: false
 		},
 		{
 			name: 'Add Player',
-			url: '/game/add-player'
+			url: '/game/add-player',
+			disabled: disableMenuItem
 		},
 		{
 			name: 'Scores',
-			url: '/game/scores'
+			url: '/game/scores',
+			disabled: disableMenuItem
 		}
 	];
-	let showMenu: boolean = false;
+	
 	$: if ($navigating) {
-		showMenu = false;
+		showMenu = false;		
 	}
+	
+	$: {
+		showMenu;
+		if (browser) {
+			players = getPlayers();
+		}
+		if (players.length) {
+			disableMenuItem = false;
+		} else {
+			disableMenuItem = true;
+		}
+	}
+
+	// Mounted
+	onMount(() => {
+		players = getPlayers();
+	});
 </script>
 
 <div class="flex items-center justify-between border-b-2 border-red-100 p-1">
@@ -39,17 +73,20 @@
 			on:click={() => {
 				showMenu = !showMenu;
 			}}
-      active="{showMenu}"
+			active={showMenu}
 		/>
 		{#if showMenu}
 			<div class="absolute right-0 shadow py-1 bg-white" transition:slide={{ duration: 400 }}>
 				<ul>
 					{#each menuLinks as link}
-						<li
-							class=" whitespace-nowrap px-6 py-1 transition-colors duration-700 hover:bg-light active:bg-red-50"
-						>
-							<a href={link.url}>{link.name}</a>
-						</li>
+						{#if !link.disabled}
+							<!-- content here -->
+							<li
+								class=" whitespace-nowrap px-6 py-1 transition-colors duration-700 hover:bg-light active:bg-red-50"
+							>
+								<a href={link.url}>{link.name}</a>
+							</li>
+						{/if}
 					{/each}
 				</ul>
 			</div>

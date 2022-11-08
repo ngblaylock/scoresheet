@@ -1,8 +1,11 @@
 <script lang="ts">
+  // Props
 	export let value:number|string = "";
 	export let id: string;
 	export let type: string = 'text';
   export let required: boolean = false;
+
+  // Methods
 	const handleInput = (e: any) => { 
     if(type.match(/^(number|range)$/)){
       if(!!e.target.value){
