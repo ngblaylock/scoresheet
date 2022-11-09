@@ -69,7 +69,7 @@
 	});
 </script>
 
-<div class="w-full max-w-lg mx-auto px-4 h-full flex flex-col mt-6">
+<main class="w-full max-w-lg mx-auto px-4 h-full flex flex-col mt-6">
 
 	<Title>Players</Title>
 	<div>
@@ -113,4 +113,4 @@
 		</span>
 		Start Game</Button
 	>
-</div>
+</main>
