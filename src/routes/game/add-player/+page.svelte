@@ -2,7 +2,7 @@
 	import Title from '$lib/Title.svelte';
 	import Input from '$lib/Input.svelte';
 	import Button from '$lib/Button.svelte';
-	import { getPlayers, getTotal, setPlayers } from '$lib/functions';
+	import { getPlayers, getTotal, setPlayers, redirectIfNoPlayers } from '$lib/functions';
 	import type { Player, Score } from '$lib/types';
 	import { onMount } from 'svelte';
 	import { min, max } from 'lodash';
@@ -30,23 +30,26 @@
 	// Mounted
 	onMount(() => {
 		players = getPlayers();
-		players.forEach(player => {
-			let playerTotal = getTotal(player)
-			if(typeof(playerTotal) == 'number'){
-				scores.push(+playerTotal)
-			}
-		})
-		console.log(scores)
-		minScore = min(scores);
-		maxScore = max(scores);
-		avgScore = (
-			scores.reduce((prev: number, curr: number) => {
-				return prev + curr;
-			}, 0) / scores.length
-		).toFixed(1);
-		newPlayer.rounds = players[0].rounds.map((r) => {
-			return '-';
-		});
+		if (players.length) {
+			players.forEach((player) => {
+				let playerTotal = getTotal(player);
+				if (typeof playerTotal == 'number') {
+					scores.push(+playerTotal);
+				}
+			});
+			minScore = min(scores);
+			maxScore = max(scores);
+			avgScore = (
+				scores.reduce((prev: number, curr: number) => {
+					return prev + curr;
+				}, 0) / scores.length
+			).toFixed(1);
+			newPlayer.rounds = players[0].rounds.map((r) => {
+				return '-';
+			});
+		} else {
+			redirectIfNoPlayers();
+		}
 	});
 </script>
 

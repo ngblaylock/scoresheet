@@ -37,8 +37,7 @@
 	};
 	const startGame = () => {
 		addPlayer();
-		goto('/game/add-scores/');
-		console.log(players);
+		goto('/game/add-scores/', {replaceState: true});
 	};
 
 	// Computed/Watch
@@ -56,7 +55,6 @@
 
 	// Mounted
 	onMount(() => {
-		// TODO: There is a bug here when trying to make a New Game while on this page. the URL doesn't change so this is never triggered.
 		focusInput();
 		if ($page.url.searchParams.get('restart')) {
 			let storedPlayers: Player[] = getPlayers();
@@ -66,50 +64,53 @@
 			players = storedPlayers;
 			setPlayers(players);
 		} else {
-			localStorage.removeItem('players');
+			setPlayers([])
 		}
 	});
 </script>
 
-<Title>Players</Title>
-<div>
-	<!-- TODO: Add Drag/Drop -->
-	{#each players as player, index (player)}
-		<div>
-			<Card classList="mb-1">
-				<div class="flex">
-					<img src="/icons/drag-vertical.svg" alt="drag icon" />
-					<div class="mx-2">{player.name}</div>
-					<button class="ml-auto" on:click={() => removePlayer(index)}>
-						<img src="/icons/close.svg" alt="remove player icon" />
-					</button>
-				</div>
-			</Card>
-		</div>
-	{/each}
-	<form on:submit|preventDefault={addPlayer}>
-		<Input id="new-player-name" bind:value={newPlayer}>
-			<span slot="append">
-				<Button
-					disabled={isExistingName}
-					type="submit"
-					classList="rounded-none px-4"
-					variant="dark"
-					inline>Add</Button
-				></span
-			>
-		</Input>
-	</form>
-	{#if isExistingName}
-		<div class=" text-red-500 text-center">The name entered already exists.</div>
-	{/if}
-</div>
+<div class="w-full max-w-lg mx-auto px-4 h-full flex flex-col mt-6">
 
-<Button on:click={startGame} {disabled}>
-	<span slot="prepend">
-		<div>
-			<Checkbox classList="mb-3" bind:checked={lowestScoreWins}>Lowest Score Wins</Checkbox>
-		</div>
-	</span>
-	Start Game</Button
->
+	<Title>Players</Title>
+	<div>
+		<!-- TODO: Add Drag/Drop -->
+		{#each players as player, index (player)}
+			<div>
+				<Card classList="mb-1">
+					<div class="flex">
+						<img src="/icons/drag-vertical.svg" alt="drag icon" />
+						<div class="mx-2">{player.name}</div>
+						<button class="ml-auto" on:click={() => removePlayer(index)}>
+							<img src="/icons/close.svg" alt="remove player icon" />
+						</button>
+					</div>
+				</Card>
+			</div>
+		{/each}
+		<form on:submit|preventDefault={addPlayer}>
+			<Input id="new-player-name" bind:value={newPlayer}>
+				<span slot="append">
+					<Button
+						disabled={isExistingName}
+						type="submit"
+						classList="rounded-none px-4"
+						variant="dark"
+						inline>Add</Button
+					></span
+				>
+			</Input>
+		</form>
+		{#if isExistingName}
+			<div class=" text-red-500 text-center">The name entered already exists.</div>
+		{/if}
+	</div>
+	
+	<Button on:click={startGame} {disabled}>
+		<span slot="prepend">
+			<div>
+				<Checkbox classList="mb-3" bind:checked={lowestScoreWins}>Lowest Score Wins</Checkbox>
+			</div>
+		</span>
+		Start Game</Button
+	>
+</div>

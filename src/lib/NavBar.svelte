@@ -21,12 +21,12 @@
 	$: menuLinks = [
 		{
 			name: 'Restart',
-			url: '/game/setup?restart=true',
+			url: '/setup?restart=true',
 			disabled: false
 		},
 		{
 			name: 'New Game',
-			url: '/game/setup',
+			url: '/setup',
 			disabled: false
 		},
 		{
@@ -42,7 +42,7 @@
 	];
 	
 	$: if ($navigating) {
-		showMenu = false;		
+		showMenu = false;
 	}
 	
 	$: {

@@ -6,7 +6,7 @@
 
 	onMount(() => {
 		setTimeout(() => {
-			goto('/game/setup', { replaceState: false });
+			goto('/setup', { replaceState: false });
 		}, 2000);
 	});
 </script>

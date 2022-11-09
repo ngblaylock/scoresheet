@@ -5,14 +5,14 @@
 	import Input from '$lib/Input.svelte';
 	import { onMount } from 'svelte';
 	import type { Player, Score } from '$lib/types';
-	import { getPlayers, setPlayers, getTotal } from '$lib/functions';
+	import { getPlayers, setPlayers, getTotal, redirectIfNoPlayers } from '$lib/functions';
 
 	// Data
 	let players: Player[] = [];
 	let currentRound: number = 0;
 
 	// Methods
-	
+
 	const setScores = () => {
 		setPlayers(players);
 		goto(`/game/scores`);
@@ -31,27 +31,31 @@
 
 	// Mounted
 	onMount(() => {
-		players = getPlayers();		
-		players.forEach((p) => {
-			p.rounds.push('-');
-		});
-		players = players;
-		currentRound = players[0].rounds.length;
+		players = getPlayers();
+		if (players.length) {
+			players.forEach((p) => {
+				p.rounds.push('-');
+			});
+			players = players;
+			currentRound = players[0].rounds.length;
+		} else {
+			redirectIfNoPlayers();
+		}
 	});
 </script>
 
 {#each players as player, playerId}
-<Card classList="mt-4">
-	<div class="text-center text-2xl mb-2">{player.name}</div>
-	<div class="text-center text-3xl">{getTotal(player)}</div>
-	<label for="round-points" class="block text-center">Round {currentRound} Points</label>
-	<div class="w-36 mx-auto">
-		<Input
-			type="number"
-			id="round-points-{player.name.toLowerCase()}-{playerId}"
-			bind:value={player.rounds[player.rounds.length - 1]}
-		/>
-	</div>
+	<Card classList="mt-4">
+		<div class="text-center text-2xl mb-2">{player.name}</div>
+		<div class="text-center text-3xl">{getTotal(player)}</div>
+		<label for="round-points" class="block text-center">Round {currentRound} Points</label>
+		<div class="w-36 mx-auto">
+			<Input
+				type="number"
+				id="round-points-{player.name.toLowerCase()}-{playerId}"
+				bind:value={player.rounds[player.rounds.length - 1]}
+			/>
+		</div>
 		<table class="table-auto w-full mt-4">
 			<thead>
 				<tr>

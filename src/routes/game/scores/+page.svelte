@@ -4,7 +4,7 @@
 	import Title from '$lib/Title.svelte';
 	import Card from '$lib/Card.svelte';
 	import type { Player, Score } from '$lib/types';
-	import { getTotal } from '$lib/functions';
+	import { getTotal, redirectIfNoPlayers } from '$lib/functions';
 	import {orderBy} from 'lodash';
 
 	// Data
@@ -14,10 +14,18 @@
 	let sortAsc: boolean = true;
 
 	// Computed/Watch
-	$: if (players.length) {
-		// TODO: This doesn't handle any '-'s
-		sortedPlayers = orderBy(
-			players,
+	$: if (players.length) {		
+		let scoredPlayers: Player[] = [];
+		let nonScoredPlayers: Player[] = [];
+		players.forEach(player => {
+			if(typeof(getTotal(player)) == 'number'){
+				scoredPlayers.push(player);
+			} else{
+				nonScoredPlayers.push(player);
+			}
+		})
+		let orderedPlayers = orderBy(
+			scoredPlayers,
 			[
 				(player) => {
 					return getTotal(player);
@@ -25,13 +33,18 @@
 			],
 			[sortAsc ? 'asc' : 'desc']
 		);
+		sortedPlayers = [...orderedPlayers, ...nonScoredPlayers]
 	}
 
 	// Mounted
 	onMount(() => {
 		players = JSON.parse(localStorage.getItem('players') || '[]');
-		round = players[0].rounds.length;
-		sortAsc = JSON.parse(localStorage.getItem('lowestScoreWins') || 'true');
+		if(players.length){
+			round = players[0].rounds.length;
+			sortAsc = JSON.parse(localStorage.getItem('lowestScoreWins') || 'true');
+		}else{
+			redirectIfNoPlayers()
+		}
 	});
 </script>
 
