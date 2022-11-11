@@ -5,7 +5,7 @@
 	import Card from '$lib/Card.svelte';
 	import type { Player, Score } from '$lib/types';
 	import { getTotal, redirectIfNoPlayers } from '$lib/functions';
-	import {orderBy} from 'lodash';
+	import orderBy from 'lodash/orderBy';
 
 	// Data
 	let players: Player[] = [];
