@@ -1,6 +1,7 @@
 {
     "name": "Scoresheet",
     "short_name": "Scoresheet",
+    "start_url": "/",
     "icons": [
         {
             "src": "/favicons/android-chrome-192x192.png",
@@ -15,5 +16,6 @@
     ],
     "theme_color": "#ffffff",
     "background_color": "#ffffff",
-    "display": "standalone"
+    "display": "standalone",
+    "scope": "/"
 }

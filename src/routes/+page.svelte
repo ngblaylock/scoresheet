@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
-	import { Body } from 'svelte-body';
 
 	onMount(() => {
 		setTimeout(() => {
@@ -10,16 +9,14 @@
 	});
 </script>
 
-<Body class="bg-dark" />
-
-<main>
+<div class="h-full bg-dark">
 	<img src="/logo.svg" alt="" class="max-w-[100px] mx-auto mt-24 mb-4" />
 	
 	<h1 class="text-4xl text-light text-center">Scoresheet</h1>
 	<img src="/underline.svg" alt="" class="max-w-[300px] mx-auto mt-2" />
 	
 	<div class="loader" />
-</main>
+</div>
 
 <style lang="scss">
 	.loader {
