@@ -73,12 +73,12 @@
 
 	<Title>Players</Title>
 	<div>
-		<!-- TODO: Add Drag/Drop -->
 		{#each players as player, index (player)}
-			<div>
-				<Card classList="mb-1">
-					<div class="flex">
-						<img src="/icons/drag-vertical.svg" alt="drag icon" />
+		<div>
+			<Card classList="mb-1">
+				<div class="flex">
+						<!-- TODO: Add Drag/Drop -->
+						<!-- <img src="/icons/drag-vertical.svg" alt="drag icon" /> -->
 						<div class="mx-2">{player.name}</div>
 						<button class="ml-auto" on:click={() => removePlayer(index)}>
 							<img src="/icons/close.svg" alt="remove player icon" />
