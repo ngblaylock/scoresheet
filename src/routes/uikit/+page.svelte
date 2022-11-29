@@ -55,7 +55,7 @@
 </script>
 
 <main class="container mx-auto px-4">
-	<h1 class="text-5xl">UI Kit</h1>
+	<h1 class="text-5xl mt-6">UI Kit</h1>
 	<div class="grid grid-cols-3 gap-4 mt-4">
 		{#each theme as color}
 			<div class="set-hex flex justify-between items-center {color.background} {color.text} p-2">{color.color}</div>

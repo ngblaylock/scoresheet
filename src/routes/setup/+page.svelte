@@ -37,7 +37,7 @@
 	};
 	const startGame = () => {
 		addPlayer();
-		goto('/game/add-scores/', {replaceState: true});
+		goto('/game/add-scores/', { replaceState: true });
 	};
 
 	// Computed/Watch
@@ -51,7 +51,7 @@
 		isExistingName = false;
 	}
 
-	$: disabled = !players.length
+	$: disabled = !players.length;
 
 	// Mounted
 	onMount(() => {
@@ -64,19 +64,18 @@
 			players = storedPlayers;
 			setPlayers(players);
 		} else {
-			setPlayers([])
+			setPlayers([]);
 		}
 	});
 </script>
 
 <main class="w-full max-w-lg mx-auto px-4 h-full flex flex-col mt-6">
-
 	<Title>Players</Title>
 	<div>
 		{#each players as player, index (player)}
-		<div>
-			<Card classList="mb-1">
-				<div class="flex">
+			<div>
+				<Card classList="mb-1">
+					<div class="flex">
 						<!-- TODO: Add Drag/Drop -->
 						<!-- <img src="/icons/drag-vertical.svg" alt="drag icon" /> -->
 						<div class="mx-2">{player.name}</div>
@@ -88,7 +87,7 @@
 			</div>
 		{/each}
 		<form on:submit|preventDefault={addPlayer}>
-			<Input id="new-player-name" bind:value={newPlayer}>
+			<Input id="new-player-name" bind:value={newPlayer} autocapitalize="words">
 				<span slot="append">
 					<Button
 						disabled={isExistingName}
@@ -104,7 +103,7 @@
 			<div class=" text-red-500 text-center">The name entered already exists.</div>
 		{/if}
 	</div>
-	
+
 	<Button on:click={startGame} {disabled}>
 		<span slot="prepend">
 			<div>

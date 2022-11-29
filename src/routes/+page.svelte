@@ -11,10 +11,10 @@
 
 <div class="h-full bg-dark">
 	<img src="/logo.svg" alt="" class="max-w-[100px] mx-auto mt-24 mb-4" />
-	
+
 	<h1 class="text-4xl text-light text-center">Scoresheet</h1>
 	<img src="/underline.svg" alt="" class="max-w-[300px] mx-auto mt-2" />
-	
+
 	<div class="loader" />
 </div>
 

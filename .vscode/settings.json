@@ -12,5 +12,8 @@
       "${folder}/static",
       "${folder}/src/routes",
     ],
+  },
+  "search.exclude": {
+    "/docs": true
   }
 }
