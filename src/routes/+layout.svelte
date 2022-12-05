@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { navigating } from '$app/stores';
 	import { dev } from '$app/environment';
+	import DevToolbar from '$lib/DevToolbar.svelte';
 
 	import '../app.css';
 	onMount(() => {
@@ -22,15 +23,7 @@
 </script>
 
 <div class="h-screen flex">
-	{#if dev}
-		<div class="devbar flex justify-between px-3 py-1 text-xs text-white">
-			Development Mode
-			<div class="flex">
-				<a href="/" class="px-1">Start Over</a>
-				<a href="/uikit" class="px-1">UI Kit</a>
-			</div>
-		</div>
-	{/if}
+	<DevToolbar />
 	<div class="flex-1">
 		<div class="h-full flex flex-col" id="scroll-container">
 			<slot />
@@ -61,16 +54,5 @@
 <style lang="scss">
 	#scroll-container {
 		overflow-y: auto;
-	}
-	.devbar{
-		background: #CA332E;
-		position: absolute;
-		top: -1.7em;
-		right: 0;
-		left: 0;
-		transition: .2s;
-		&:hover{
-			top: 0;
-		}
 	}
 </style>
