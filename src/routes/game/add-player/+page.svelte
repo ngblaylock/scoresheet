@@ -56,7 +56,7 @@
 <Title>Add Player</Title>
 <form on:submit|preventDefault={addPlayer}>
 	<label for="new-player-name" class="block">Player Name</label>
-	<Input id="new-player-name" required bind:value={newPlayer.name} />
+	<Input id="new-player-name" autocapitalize="words" required bind:value={newPlayer.name} />
 
 	<label for="new-player-score" class="block mt-2">Starting Score</label>
 	<Input

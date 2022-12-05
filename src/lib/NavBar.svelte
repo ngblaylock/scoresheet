@@ -66,7 +66,7 @@
 <nav class="flex items-center justify-between border-b-2 border-red-100 p-1">
 	<IconButton icon="chevron-left" alt="Previous Page" on:click={goBack} />
 	<div>Scoresheet</div>
-	<div class="relative">
+	<div class="relative z-50">
 		<IconButton
 			icon="dots-vertical"
 			alt="Menu"
