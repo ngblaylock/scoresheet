@@ -73,8 +73,9 @@
 
 {#if players.length && players[0].rounds.length}
 	<div
-		class=" overflow-x-auto bg-white border border-dark text-center rounded-sm"
+		class=" overflow-x-auto -mx-4"
 		id="score-scroll-container"
+		style="-webkit-transform: translateZ(0)"
 	>
 		<table class="border-separate border-spacing-0 table-auto w-full">
 			<thead class=" bg-dark text-white">
@@ -83,27 +84,30 @@
 					{#each players[0].rounds as rounds, index}
 						<th class="px-2 text-center">{index + 1}</th>
 					{/each}
-					<th class="text-right w-0 px-2">Total</th>
+					<th class="text-center w-0 px-2">Total</th>
 				</tr>
 			</thead>
 			<tbody>
-				{#each players as player}
+				{#each sortedPlayers as player, playerI}
 					<tr>
 						<th
 							scope="row"
-							class="text-left bg-white sticky left-0 border-r-2 border-r-dark border-b border-b-dark px-3"
-							>{player.name}</th
+							class="text-left sticky left-0 border-r-2 border-r-dark px-3 {playerI % 2 == 0
+								? 'bg-gray-100'
+								: 'bg-gray-200'}">{player.name}</th
 						>
 						{#each player.rounds as round, roundI}
-							<td class="px-2 border-b border-b-dark text-center"
+							<td class="px-2 text-center {playerI % 2 == 0 ? 'bg-gray-100' : 'bg-gray-200'}"
 								><div class="flex flex-col">
 									{round}
 									<small class=" text-xs">{getTotal(player, roundI)}</small>
 								</div></td
 							>
 						{/each}
-						<td class="text-right border-l-dark border-l-2 px-2 border-b border-b-dark"
-							>{getTotal(player)}</td
+						<td
+							class="text-center border-l-dark border-l-2 px-2 {playerI % 2 == 0
+								? 'bg-gray-100'
+								: 'bg-gray-200'}">{getTotal(player)}</td
 						>
 					</tr>
 				{/each}
