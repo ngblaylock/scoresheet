@@ -2,9 +2,6 @@
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
 
-	// import * as tw from '../../../tailwind.config.cjs';
-	// console.log(tw);
-
 	let theme = [
 		{ color: 'dark', background: 'bg-dark', text: 'text-light' },
 		{ color: 'primary', background: 'bg-primary', text: 'text-light' },

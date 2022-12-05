@@ -7,7 +7,6 @@
 			{ name: 'Sam', score: 102, rounds: [16, 3, 2, 5, 5, 34, 34, 3] },
 			{ name: 'Derrik', score: 244, rounds: [26, 44, '-', 34, 54, 34, 9, 43] }
 		];
-		console.log('Populating');
 		localStorage.setItem('players', JSON.stringify(content));
 		localStorage.setItem('lowestScoreWins', 'true');
     goto('/game/scores', { replaceState: false });
