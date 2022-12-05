@@ -12,22 +12,22 @@
 		<!-- TODO: Add in service worker and improve manifest -->
 		<!-- TODO: Improve 404 page -->
 		<meta http-equiv="content-security-policy" content="">
-		<link href="../_app/immutable/assets/_layout-16434627.css" rel="stylesheet">
-		<link rel="modulepreload" href="../_app/immutable/start-3d22a5c6.js">
+		<link href="../_app/immutable/assets/_layout-1081f7ad.css" rel="stylesheet">
+		<link rel="modulepreload" href="../_app/immutable/start-71b5b8df.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/index-248baa26.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/singletons-23c308f3.js">
-		<link rel="modulepreload" href="../_app/immutable/components/pages/_layout.svelte-70105aa2.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/stores-22ff518a.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/singletons-d29ae6c9.js">
+		<link rel="modulepreload" href="../_app/immutable/components/pages/_layout.svelte-dd76b40e.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/stores-24914cc8.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/navigation-e6151023.js">
 		<link rel="modulepreload" href="../_app/immutable/modules/pages/_layout.ts-b8ee4d7c.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/_layout-1daba58d.js">
-		<link rel="modulepreload" href="../_app/immutable/components/pages/game/_layout.svelte-f4798974.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/functions-90f33945.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/navigation-53db668c.js">
-		<link rel="modulepreload" href="../_app/immutable/components/pages/game/add-player/_page.svelte-cb5ac4cd.js">
+		<link rel="modulepreload" href="../_app/immutable/components/pages/game/_layout.svelte-b2da0b8c.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/functions-ce5716d8.js">
+		<link rel="modulepreload" href="../_app/immutable/components/pages/game/add-player/_page.svelte-8c2532c0.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/Title-7566ad5c.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/Input-868e269e.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/Button-af951ed6.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/_commonjsHelpers-094ef602.js"><!-- HEAD_svelte-6bi8wh --><link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+		<link rel="modulepreload" href="../_app/immutable/chunks/lodash-b1c1932f.js"><!-- HEAD_svelte-6bi8wh --><link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
 		<link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png"><link rel="manifest" href="/favicons/site.webmanifest"><link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#210201"><meta name="apple-mobile-web-app-title" content="Scoresheet"><meta name="application-name" content="Scoresheet"><meta name="msapplication-TileColor" content="#ffffff"><meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width"><!-- HEAD_svelte-6bi8wh -->
 	</head>
@@ -35,14 +35,14 @@
 		
 
 
-<div class="h-screen flex">
-	<div class="flex-1"><div class="h-full flex flex-col svelte-178q7zg" id="scroll-container"><nav class="flex items-center justify-between border-b-2 border-red-100 p-1"><button class="flex items-center justify-center w-8 h-8 rounded-full  hover:bg-red-50 transition-colors duration-500"><img src="/icons/chevron-left.svg" alt="Previous Page"></button>
+<div class="h-screen flex pt-4">
+	<div class="flex-1"><div class="h-full flex flex-col svelte-u3pbld" id="scroll-container"><nav class="flex items-center justify-between border-b-2 border-red-100 p-1"><button class="flex items-center justify-center w-8 h-8 rounded-full  hover:bg-red-50 transition-colors duration-500"><img src="/icons/chevron-left.svg" alt="Previous Page"></button>
 	<div>Scoresheet</div>
-	<div class="relative"><button class="flex items-center justify-center w-8 h-8 rounded-full  hover:bg-red-50 transition-colors duration-500"><img src="/icons/dots-vertical.svg" alt="Menu"></button>
+	<div class="relative z-50"><button class="flex items-center justify-center w-8 h-8 rounded-full  hover:bg-red-50 transition-colors duration-500"><img src="/icons/dots-vertical.svg" alt="Menu"></button>
 		</div></nav>
-<main class="w-full max-w-lg mx-auto px-4 h-full flex flex-col"><h1 class="text-center text-3xl mt-4 mb-4">Add Player</h1>
+<main class="w-screen max-w-lg mx-auto px-4 h-full flex flex-col"><h1 class="text-center text-3xl mt-4 mb-4">Add Player</h1>
 <form><label for="new-player-name" class="block">Player Name</label>
-	<div class="flex border border-dark rounded-lg overflow-hidden"><input autocomplete="off" class="py-2 px-2 flex-1 text-center w-full" autocapitalize="none" id="new-player-name" required type="text">
+	<div class="flex border border-dark rounded-lg overflow-hidden"><input autocomplete="off" class="py-2 px-2 flex-1 text-center w-full" autocapitalize="words" id="new-player-name" required type="text">
 	</div>
 
 	<label for="new-player-score" class="block mt-2">Starting Score</label>
@@ -59,8 +59,8 @@
 
 
 
-		<script type="module" data-sveltekit-hydrate="85ihcs">
-			import { start } from "../_app/immutable/start-3d22a5c6.js";
+		<script type="module" data-sveltekit-hydrate="1l361r6">
+			import { start } from "../_app/immutable/start-71b5b8df.js";
 
 			start({
 				env: {},
@@ -74,7 +74,7 @@
 					form: null
 				},
 				paths: {"base":"","assets":""},
-				target: document.querySelector('[data-sveltekit-hydrate="85ihcs"]').parentNode,
+				target: document.querySelector('[data-sveltekit-hydrate="1l361r6"]').parentNode,
 				trailing_slash: "never"
 			});
 		</script>
