@@ -2,9 +2,6 @@
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
 
-	// import * as tw from '../../../tailwind.config.cjs';
-	// console.log(tw);
-
 	let theme = [
 		{ color: 'dark', background: 'bg-dark', text: 'text-light' },
 		{ color: 'primary', background: 'bg-primary', text: 'text-light' },
@@ -54,7 +51,7 @@
 	});
 </script>
 
-<main class="container mx-auto px-4">
+<div class="container mx-auto px-4">
 	<h1 class="text-5xl mt-6">UI Kit</h1>
 	<div class="grid grid-cols-3 gap-4 mt-4">
 		{#each theme as color}
@@ -74,4 +71,4 @@
 			{/each}
 		</div>
 	</div>
-</main>
+</div>

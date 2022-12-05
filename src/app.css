@@ -10,16 +10,16 @@
 	}
 	:root {
 		--app-height: 100%;
-	 }
-	 html,
-	 body {
+	}
+	html,
+	body {
 		padding: 0;
 		margin: 0;
 		overflow: hidden;
 		width: 100vw;
 		height: 100vh;
-		height: var( — app-height);
-	 }
+		height: var(— app-height);
+	}
 	body:not(.bg-dark) {
 		background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
 	}
@@ -33,5 +33,9 @@
 	/* Firefox */
 	input[type='number'] {
 		-moz-appearance: textfield;
+	}
+	
+	body{
+		-webkit-overflow-scrolling: auto;
 	}
 }
