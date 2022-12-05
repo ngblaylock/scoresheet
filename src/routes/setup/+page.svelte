@@ -69,7 +69,7 @@
 	});
 </script>
 
-<main class="w-full max-w-lg mx-auto px-4 h-full flex flex-col mt-6">
+<div class="w-full max-w-lg mx-auto px-4 h-full flex flex-col mt-6">
 	<Title>Players</Title>
 	<div>
 		{#each players as player, index (player)}
@@ -112,4 +112,4 @@
 		</span>
 		Start Game</Button
 	>
-</main>
+</div>
