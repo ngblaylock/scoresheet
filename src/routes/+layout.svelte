@@ -22,7 +22,7 @@
 	$: if ($navigating) myFunction();
 </script>
 
-<div class="h-screen flex">
+<div class="h-screen flex pt-4">
 	<DevToolbar />
 	<div class="flex-1">
 		<div class="h-full flex flex-col" id="scroll-container">

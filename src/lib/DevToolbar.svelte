@@ -1,14 +1,25 @@
 <script lang="ts">
 	import { dev } from '$app/environment';
+	import { goto } from '$app/navigation';
+	const populate = (): void => {
+		const content = [
+			{ name: 'John', score: 168, rounds: [15, 23, 12, 34, 23, 4, 34, 23] },
+			{ name: 'Sam', score: 102, rounds: [16, 3, 2, 5, 5, 34, 34, 3] },
+			{ name: 'Derrik', score: 244, rounds: [26, 44, '-', 34, 54, 34, 9, 43] }
+		];
+		console.log('Populating');
+		localStorage.setItem('players', JSON.stringify(content));
+		localStorage.setItem('lowestScoreWins', 'true');
+    goto('/game/scores', { replaceState: false });
+	};
 </script>
 
 {#if dev}
-	<div class="devbar flex justify-between px-3 py-1 text-xs text-white">
-		Development Mode
-		<div class="flex">
-			<a href="/" class="px-1">Start Over</a>
-			<a href="/uikit" class="px-1">UI Kit</a>
-		</div>
+	<div class="devbar flex justify-between items-center px-3 py-1 text-xs text-white h-4">
+		Dev
+		<button on:click={populate} class="px-1">Populate</button>
+		<a href="/" class="px-1">Start Over</a>
+		<a href="/uikit" class="px-1">UI Kit</a>
 	</div>
 {/if}
 
@@ -16,12 +27,10 @@
 	.devbar {
 		background: #ca332e;
 		position: absolute;
-		top: -1.7em;
 		right: 0;
 		left: 0;
+		top: 0;
 		transition: 0.2s;
-		&:hover {
-			top: 0;
-		}
+		z-index: 100;
 	}
 </style>
