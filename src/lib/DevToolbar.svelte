@@ -3,9 +3,9 @@
 	import { goto } from '$app/navigation';
 	const populate = (): void => {
 		const content = [
-			{ name: 'John', score: 168, rounds: [15, 23, 12, 34, 23, 4, 34, 23] },
-			{ name: 'Sam', score: 102, rounds: [16, 3, 2, 5, 5, 34, 34, 3] },
-			{ name: 'Derrik', score: 244, rounds: [26, 44, '-', 34, 54, 34, 9, 43] }
+			{ name: 'John', rounds: [15, 23, 12, 34, 23, 4, 34, 23] },
+			{ name: 'Sam', rounds: [16, 3, 2, 5, 5, 34, 34, 3] },
+			{ name: 'Derrik', rounds: [26, 44, '-', 34, 54, 34, 9, 43] }
 		];
 		localStorage.setItem('players', JSON.stringify(content));
 		localStorage.setItem('lowestScoreWins', 'true');

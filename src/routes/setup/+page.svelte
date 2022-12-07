@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Sortable from 'sortablejs';
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
 	import Button from '$lib/Button.svelte';
@@ -15,6 +16,7 @@
 	let newPlayer: string = '';
 	let lowestScoreWins: boolean = true;
 	let isExistingName: boolean = false;
+	let el: any;
 
 	// Methods
 	const focusInput = () => {
@@ -38,6 +40,12 @@
 	const startGame = () => {
 		addPlayer();
 		goto('/game/add-scores/', { replaceState: true });
+	};
+	const move = (arr: Player[], from: number, to: number) => {
+		let numberOfDeletedElm = 1;
+		const elm = arr.splice(from, numberOfDeletedElm)[0];
+		numberOfDeletedElm = 0;
+		arr.splice(to, numberOfDeletedElm, elm);
 	};
 
 	// Computed/Watch
@@ -66,26 +74,35 @@
 		} else {
 			setPlayers([]);
 		}
+		Sortable.create(el, {
+			handle: '.handle',
+			animation: 200,
+			ghostClass: 'bg-gray-100',
+			onUpdate: async (evt) => {
+				move(players, evt.oldIndex || 0, evt.newIndex || 0);
+				players = players;
+				setPlayers(players);
+			}
+		});
 	});
 </script>
 
 <div class="w-full max-w-lg mx-auto px-4 h-full flex flex-col mt-6">
 	<Title>Players</Title>
 	<div>
-		{#each players as player, index (player)}
-			<div>
+		<div bind:this={el}>
+			{#each players as player, index (player)}
 				<Card classList="mb-1">
 					<div class="flex">
-						<!-- TODO: Add Drag/Drop -->
-						<!-- <img src="/icons/drag-vertical.svg" alt="drag icon" /> -->
+						<img src="/icons/drag-vertical.svg" alt="drag icon" class="handle cursor-move" />
 						<div class="mx-2">{player.name}</div>
 						<button class="ml-auto" on:click={() => removePlayer(index)}>
 							<img src="/icons/close.svg" alt="remove player icon" />
 						</button>
 					</div>
 				</Card>
-			</div>
-		{/each}
+			{/each}
+		</div>
 		<form on:submit|preventDefault={addPlayer}>
 			<Input id="new-player-name" bind:value={newPlayer} autocapitalize="words">
 				<span slot="append">
