@@ -88,7 +88,7 @@
 </script>
 
 <div class="w-full max-w-lg mx-auto px-4 h-full flex flex-col mt-6">
-	<Title>Players...</Title>
+	<Title>Players</Title>
 	<div>
 		<div bind:this={el}>
 			{#each players as player, index (player)}
