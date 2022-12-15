@@ -1,15 +1,18 @@
 <script lang="ts">
-  import {getPlayers} from '$lib/functions';
+	import { getPlayers } from '$lib/functions';
 	import { onMount } from 'svelte';
-  import type {Player} from '$lib/types';
-  import Button from '$lib/Button.svelte';
-  import NavBar from '$lib/NavBar.svelte';
+	import type { Player } from '$lib/types';
+	import Button from '$lib/Button.svelte';
+	import NavBar from '$lib/NavBar.svelte';
 
-  let players: Player[]
-  
-  onMount(()=> {
-    players = getPlayers();
-  })
+	let players: Player[];  
+
+  // @ts-ignore
+  const version = __APP_VERSION__;
+
+	onMount(() => {
+		players = getPlayers();
+	});
 </script>
 
 <NavBar />
@@ -26,14 +29,35 @@
 
 	<p class="mt-3">
 		Any bug fixes or suggestions can be submitted by creating an issue on
-		<a class="text-primary underline" href="https://github.com/ngblaylock/scoresheet/issues" target="_blank"
-			>GitHub</a
+		<a
+			class="text-primary underline"
+			href="https://github.com/ngblaylock/scoresheet/issues"
+			target="_blank">GitHub</a
 		>.
 	</p>
 
-  {#if players && players.length}
-    <Button href="/game/scores/">Scores</Button>
-  {:else}
-    <Button href="/setup">New Game</Button>
-  {/if}
+	{#if players && players.length}
+		<Button href="/game/scores/">Scores</Button>
+	{:else}
+		<Button href="/setup">New Game</Button>
+	{/if}
+
+	<div class="flex flex-wrap justify-between items-center py-2 border-t">
+		<div class="mx-4">
+			<a href="https://nathanblaylock.com" target="_blank"
+				><img
+					src="/icons/nb-mark.svg"
+					alt="Nathan Blaylock Media logo"
+					class=" w-5 max-w-none"
+				/></a
+			>
+		</div>
+		<div class="mx-4">&copy; Nathan Blaylock {new Date().getFullYear()}</div>
+		<div class="mx-4">Version {version}</div>
+		<div class="mx-4">
+			<a href="https://github.com/ngblaylock/scoresheet" target="_blank"
+				><img src="/icons/github-mark.svg" alt="GitHub" class=" w-5 max-w-none" /></a
+			>
+		</div>
+	</div>
 </main>
