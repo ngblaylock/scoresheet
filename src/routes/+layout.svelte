@@ -34,16 +34,61 @@
 <svelte:head>
 	{#if dev}
 		<link rel="shortcut icon" href="/favicon-dev.ico" />
-		<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon-dev.png" />
-		<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32-dev.png" />
-		<link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16-dev.png" />
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="/favicons/apple-touch-icon-dev.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="/favicons/favicon-32x32-dev.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="/favicons/favicon-16x16-dev.png"
+		/>
 	{:else}
-		<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
-		<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
-		<link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+		<script
+			async
+			src="https://www.googletagmanager.com/gtag/js?id=G-SVRZDR3MH4"
+		></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
+
+			gtag('config', 'G-SVRZDR3MH4');
+		</script>
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="/favicons/apple-touch-icon.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="/favicons/favicon-32x32.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="/favicons/favicon-16x16.png"
+		/>
 	{/if}
 	<link rel="manifest" href="/favicons/site.webmanifest" />
-	<link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#210201" />
+	<link
+		rel="mask-icon"
+		href="/favicons/safari-pinned-tab.svg"
+		color="#210201"
+	/>
 	<meta name="apple-mobile-web-app-title" content="Scoresheet" />
 	<meta name="application-name" content="Scoresheet" />
 	<meta name="msapplication-TileColor" content="#ffffff" />

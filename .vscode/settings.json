@@ -17,6 +17,8 @@
     "**/docs": true
   },
   "cSpell.words": [
-    "sortablejs"
+    "Scoresheet",
+    "sortablejs",
+    "sveltekit"
   ]
 }

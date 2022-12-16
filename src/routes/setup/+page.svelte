@@ -10,6 +10,7 @@
 	import type { Player } from '$lib/types';
 	import { getPlayers, setPlayers } from '$lib/functions';
 	import { goto } from '$app/navigation';
+	import NavBar from '$lib/NavBar.svelte';
 
 	// Data
 	let players: Player[] = [];
@@ -86,6 +87,8 @@
 		});
 	});
 </script>
+
+<NavBar />
 
 <div class="w-full max-w-lg mx-auto px-4 h-full flex flex-col mt-6">
 	<Title>Players</Title>
