@@ -1,8 +1,14 @@
 # Scoresheet App
 
+Scoresheet is designed and maintained by Nathan Blaylock. It's primary purpose was primarily to learn Svelte/SvelteKit and Tailwind while creating an app that would actually be used by friends and family. 
+
+The purpose of this app is to do the math for each scoring round during a card game. It is designed to be as general purpose as possible. The app is designed for mobile devices and can be "installed" by creating a shortcut on your device home screen.
+
+To open the app, visit https://scoresheet.nathanblaylock.com.
+
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` start a development server:
+Once you've run `npm install` start a development server:
 
 ```bash
 npm run dev
@@ -11,12 +17,6 @@ npm run dev
 # or start the server and open the app in a new browser tab
 npm run dev -- --open
 ```
-
-## Building
-
-To create a production version of the app: `npm run build`.
-
-You can preview the production build with `npm run preview`.
 
 ## Releasing
 
