@@ -1,35 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap"
-			rel="stylesheet"
-		/>
-		<title>Scoresheet</title>
-		<meta
-			name="description"
-			content="Scoresheet is an app developed for mobile devices that helps keep track of scores during card games."
-		/>
-		<link rel="canonical" href="https://scoresheet.nathanblaylock.com/" />
-		<meta name="robots" content="index, nofollow" />
-		<meta property="og:title" content="Scoresheet" />
-		<meta property="og:type" content="website" />
-		<meta
-			property="og:description"
-			content="Scoresheet is an app developed for mobile devices that helps keep track of scores during card games."
-		/>
-		<meta
-			property="og:image"
-			content="https://scoresheet.nathanblaylock.com/og-img.png"
-		/>
-		<meta property="og:url" content="https://scoresheet.nathanblaylock.com/" />
-
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		%sveltekit.head%
 	</head>
-	<body>
-		%sveltekit.body%
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>
