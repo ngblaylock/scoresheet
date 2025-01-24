@@ -9,4 +9,14 @@
     ],
     "scope": "svelte"
   },
+  "Scss": {
+    "prefix": "s-scss",
+    "body": [
+      "<style lang=\"scss\">",
+      "  $1",
+      "</style>",
+      "",
+    ],
+    "scope": "svelte"
+  },
 }

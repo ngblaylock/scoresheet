@@ -1,15 +1,16 @@
 <script lang="ts">
-  import 'nathanblaylock.com/dist/nathanblaylock.min.css';
+  import 'nathanblaylock.com/styles';
   import Favicons from './Favicons.svelte';
   import Navbar from './Navbar.svelte';
 </script>
 
 <Favicons />
 
-
-<div class="grid-bg"></div>
-<Navbar />
-<slot />
+<div class="font-cursive">
+  <div class="grid-bg"></div>
+  <Navbar />
+  <slot />
+</div>
 
 {#each Array(100) as x}
   <div>Lorem {x}</div>
