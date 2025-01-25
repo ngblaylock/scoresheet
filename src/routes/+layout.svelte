@@ -6,15 +6,13 @@
 
 <Favicons />
 
-<div class="font-cursive">
-  <div class="grid-bg"></div>
-  <Navbar />
-  <slot />
+<div class="grid-bg"></div>
+<div class="outer-flex-container">
+  <div class="inner-flex-container">
+    <Navbar />
+    <slot />
+  </div>
 </div>
-
-{#each Array(100) as x}
-  <div>Lorem {x}</div>
-{/each}
 
 <style lang="scss">
   .grid-bg {
@@ -36,5 +34,16 @@
       left: 0;
       right: 0;
     }
+  }
+
+  .outer-flex-container {
+    display: flex;
+  }
+
+  .inner-flex-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
   }
 </style>

@@ -11,7 +11,10 @@ const config = {
     vitePreprocess()
   ],
   kit: {
-    adapter: adapterStatic()
+    adapter: adapterStatic(),
+    alias: {
+      $components: './src/lib/components'
+    }
   }
 };
 
