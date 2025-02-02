@@ -6,7 +6,6 @@
   <div class="container">
     <h1 class="font-cursive text-center">Round X Scores</h1>
     <GDevNote>Enter Scores</GDevNote>
-    <GDebug data={{hi: 'Nathan', foo: 'bar'}} />
   </div>
   {#snippet actions()}
     <div class="container">

@@ -1,0 +1,3 @@
+# nathanblaylock.com Package
+
+This application uses many of the same assets used in nathanblaylock.com. These are primarily elemental components prefixed with a 'G'. This project is set up to auto-import these components. Components that are specific ONLY to scoresheet should remain in this project. Anything that can be used globally between projects should be created in nathanblaylock.com, packaged, and imported into this project.

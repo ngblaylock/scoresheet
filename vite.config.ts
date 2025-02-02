@@ -15,14 +15,14 @@ const componentNames = fs.readdirSync(componentsDir)
 
 export default defineConfig({
   plugins: [
-    Components({
+    Components({ // https://github.com/Mohamed-Kaizen/unplugin-svelte-components
       dirs: [],
       allowOverrides: true,
       external: [
         {
-          from: 'nathanblaylock.com', // import from third party
+          from: 'nathanblaylock.com',
           names: componentNames,
-          defaultImport: false // telling `unplugin-svelte-components` to import any component as non-default export
+          defaultImport: false
         }
       ],
       eslintrc: { enabled: false }
