@@ -1,0 +1,55 @@
+// This file should can be copied from the package into the local .vscode folder.
+
+// Add the following to your package.json file under the scripts section:
+// "postinstall": "cp -f ./node_modules/nathanblaylock.com/.vscode/nathanblaylock.code-snippets .vscode/"
+// This only works for Mac and Linux. For Windows, you will need to use a different command.
+
+{
+  // Not Included in the "Svelte 5 Snippets" Extension
+
+  "TS Script": {
+    "prefix": "s-ts",
+    "body": ["<script lang=\"ts\">", "  $1", "</script>", ""],
+    "description": "Adds a TS script tag.",
+    "scope": "svelte",
+  },
+  "SCSS Style": {
+    "prefix": "s-scss",
+    "body": ["<style lang=\"scss\">", "  $1", "</style>"],
+    "description": "Adds a SCSS style tag.",
+    "scope": "svelte",
+  },
+
+  // Global Components
+
+  "Global Button": {
+    "prefix": "G-Btn",
+    "body": ["<GBtn variant=\"${2:primary}\">$1</GBtn>"],
+    "description": "Global button component.",
+    "scope": "svelte",
+  },
+  "Global Debug": {
+    "prefix": "G-Debug",
+    "body": ["<GDebug data={$1} />"],
+    "description": "Global debug component.",
+    "scope": "svelte",
+  },
+  "Global DevNote": {
+    "prefix": "G-DevNote",
+    "body": ["<GDevNote>$1</GDevNote>"],
+    "description": "Global development note component.",
+    "scope": "svelte",
+  },
+  "Global Icon": {
+    "prefix": "G-Icon",
+    "body": ["<GIcon name=\"${2:home}\" />"],
+    "description": "Global icon component.",
+    "scope": "svelte",
+  },
+  "Global IconBtn": {
+    "prefix": "G-IconBtn",
+    "body": ["<GIconBtn icon=\"${2:home}\" title=\"$3\" />"],
+    "description": "Global icon button component.",
+    "scope": "svelte",
+  },
+}

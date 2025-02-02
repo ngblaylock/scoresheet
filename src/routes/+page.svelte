@@ -10,7 +10,7 @@
 	});
 </script>
 
-<div class="splashscreen pb-6">
+<div class="splashscreen pb-6 z-3">
 	<ScoresheetSvg />
 </div>
 
