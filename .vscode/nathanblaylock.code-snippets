@@ -1,7 +1,11 @@
-// This file should can be copeid from the package into the local .vscode folder.
+// This file should can be copied from the package into the local .vscode folder.
+
+// Add the following to your package.json file under the scripts section:
+// "postinstall": "cp -f ./node_modules/nathanblaylock.com/.vscode/nathanblaylock.code-snippets .vscode/"
+// This only works for Mac and Linux. For Windows, you will need to use a different command.
 
 {
-  // Not Included in the Svelte 5 Snippet Extension
+  // Not Included in the "Svelte 5 Snippets" Extension
 
   "TS Script": {
     "prefix": "s-ts",

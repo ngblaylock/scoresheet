@@ -1,6 +1,5 @@
 <script lang="ts">
   import { dev } from '$app/environment';
-  import { GBtn, GIconBtn } from 'nathanblaylock.com';
   import { themeSwitcher } from '@ngblaylock/bootstrap-extensions';
   import { onMount } from 'svelte';
 

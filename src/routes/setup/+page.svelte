@@ -1,6 +1,5 @@
 <script lang="ts">
   import MainContent from '$components/MainContent.svelte';
-  import { GBtn, GDevNote } from 'nathanblaylock.com';
 </script>
 
 <MainContent>
