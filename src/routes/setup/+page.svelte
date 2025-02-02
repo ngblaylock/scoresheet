@@ -1,14 +1,14 @@
 <script lang="ts">
   import MainContent from '$components/MainContent.svelte';
-  import { Btn } from 'nathanblaylock.com';
+  import { GBtn, GDevNote } from 'nathanblaylock.com';
 </script>
 
 <MainContent>
   <div class="container">
     <h1 class="text-center font-cursive">Add Players</h1>
-    ... add player stuff
+    <GDevNote>Add Setup Here</GDevNote>
     <div class="text-center pt-2">
-      <Btn variant="base-1" iconLeft="plus">Add Player</Btn>
+      <GBtn variant="base-1" iconLeft="plus">Add Player</GBtn>
     </div>
   </div>
   {#snippet actions()}
@@ -35,7 +35,7 @@
         </div>
       </div>
       <div class="text-center">
-        <Btn href="/game/">Start Game</Btn>
+        <GBtn href="/game/">Start Game</GBtn>
       </div>
     </div>
   {/snippet}

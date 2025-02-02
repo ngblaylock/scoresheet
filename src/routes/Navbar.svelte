@@ -1,6 +1,6 @@
 <script lang="ts">
   import { dev } from '$app/environment';
-  import { Icon, Btn, IconBtn } from 'nathanblaylock.com';
+  import { GBtn, GIconBtn } from 'nathanblaylock.com';
   import { themeSwitcher } from '@ngblaylock/bootstrap-extensions';
   import { onMount } from 'svelte';
 
@@ -38,7 +38,7 @@
     {#if showThemeSwitch}
       <li><hr class="dropdown-divider" /></li>
       <li>
-        <Btn
+        <GBtn
           class="btn-sm rounded-0 px-3 d-flex align-items-center text-no-wrap gap-2 w-100"
           variant="base-1"
           aria-label="Switch Theme"
@@ -53,14 +53,14 @@
             style="pointer-events: none;"
           />
           <span class="text-capitalize text-nowrap">{currentTheme} Theme</span>
-        </Btn>
+        </GBtn>
       </li>
     {/if}
   </ul>
 {/snippet}
 
 <nav class="scoresheet-navbar p-2">
-  <IconBtn icon="arrowLeft" title="Back" variant="base-i4" />
+  <GIconBtn icon="arrowLeft" title="Back" variant="base-i4" />
   <div class="flex-fill text-center text-sm-start fs-4 px-4 font-cursive">Scoresheet</div>
   <!-- sm+ menu -->
   <div class="d-none d-sm-flex align-items-center gap-3">
@@ -75,7 +75,7 @@
   </div>
   <!-- xs menu -->
   <div class="d-sm-none dropdown">
-    <IconBtn
+    <GIconBtn
       icon="menu"
       title="Menu"
       variant="base-i4"

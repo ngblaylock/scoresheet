@@ -1,6 +1,6 @@
 <script lang="ts">
   import MainContent from '$components/MainContent.svelte';
-    import { Btn, Debug } from 'nathanblaylock.com';
+    import { GBtn, GDebug, GDevNote, GIcon } from 'nathanblaylock.com';
 </script>
 
 <MainContent>
@@ -24,14 +24,13 @@
       Or by contacting me through
       <a href="https://nathanblaylock.com/contact/" target="_blank">my website</a>.
     </p>
-    <Debug data="TODO::: Add Logo" />
-    TODO::: Add Logo
+    <GIcon name="nbMedia" size={1.9} />
     &copy; {new Date().getFullYear()} Nathan Blaylock
   </div>
   {#snippet actions()}
     <div class="container">
       <div class="hstack justify-content-center">
-        <Btn href="/">New Game</Btn>
+        <GBtn href="/">New Game</GBtn>
       </div>
     </div>
   {/snippet}

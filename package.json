@@ -10,15 +10,15 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"format": "prettier --write .",
-		"lint": "prettier --check ."
+		"lint": "prettier --check .",
+		"postinstall": "cp -f ./node_modules/nathanblaylock.com/.vscode/nathanblaylock.code-snippets .vscode/"
 	},
 	"devDependencies": {
-		"@ngblaylock/bootstrap-extensions": "^0.1.0-beta.20",
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/adapter-static": "^3.0.8",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^4.0.0",
-		"nathanblaylock.com": "github:ngblaylock/nathanblaylock.com#v2.2.3",
+		"nathanblaylock.com": "github:ngblaylock/nathanblaylock.com#v2.2.4",
 		"prettier": "^3.3.2",
 		"prettier-plugin-svelte": "^3.2.6",
 		"sass": "^1.83.4",
