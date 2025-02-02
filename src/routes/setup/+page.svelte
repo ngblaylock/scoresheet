@@ -7,7 +7,7 @@
     <h1 class="text-center font-cursive">Add Players</h1>
     <GDevNote>Add Setup Here</GDevNote>
     <div class="text-center pt-2">
-      <GBtn variant="base-1" iconLeft="plus">Add Player</GBtn>
+      <GBtn class="w-100" variant="base-4" iconLeft="plus">Add Player</GBtn>
     </div>
   </div>
   {#snippet actions()}

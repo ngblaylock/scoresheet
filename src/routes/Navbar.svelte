@@ -2,6 +2,7 @@
   import { dev } from '$app/environment';
   import { themeSwitcher } from '@ngblaylock/bootstrap-extensions';
   import { onMount } from 'svelte';
+  import type { IconName } from 'nathanblaylock.com/icons';
 
   if (import.meta.hot) {
     import.meta.hot.accept(() => {
@@ -30,7 +31,7 @@
 {/if}
 
 {#snippet links(ulClass: string, linkClass: string, showThemeSwitch: boolean = false)}
-  <ul class={ulClass} style="--bs-dropdown-min-width: 12rem;">
+  <ul class={ulClass} style="--bs-dropdown-min-width: 13rem;">
     <li><a class={linkClass} href="/">New Game</a></li>
     <li><a class={linkClass} href="/setup">Restart</a></li>
     <li><a class={linkClass} href="/about">About</a></li>
@@ -38,19 +39,12 @@
       <li><hr class="dropdown-divider" /></li>
       <li>
         <GBtn
-          class="btn-sm rounded-0 px-3 d-flex align-items-center text-no-wrap gap-2 w-100"
+          class="w-100 justify-content-start"
           variant="base-1"
           aria-label="Switch Theme"
           onclick={toggleMobileTheme}
+          iconLeft={`${currentTheme}Mode` as IconName}
         >
-          <input
-            tabindex="-1"
-            type="checkbox"
-            class="theme-switch"
-            id="theme-switch-mobile"
-            data-bse-theme-switch
-            style="pointer-events: none;"
-          />
           <span class="text-capitalize text-nowrap">{currentTheme} Theme</span>
         </GBtn>
       </li>
@@ -58,7 +52,7 @@
   </ul>
 {/snippet}
 
-<nav class="scoresheet-navbar p-2">
+<nav class="scoresheet-navbar p-2 z-1">
   <GIconBtn icon="arrowLeft" title="Back" variant="base-i4" />
   <div class="flex-fill text-center text-sm-start fs-4 px-4 font-cursive">Scoresheet</div>
   <!-- sm+ menu -->

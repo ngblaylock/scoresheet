@@ -23,8 +23,11 @@
       Or by contacting me through
       <a href="https://nathanblaylock.com/contact/" target="_blank">my website</a>.
     </p>
-    <GIcon name="nbMedia" size={1.9} />
-    &copy; {new Date().getFullYear()} Nathan Blaylock
+    <div class="hstack mt-5">
+      <GIcon name="nbMedia" size={1.9} />
+      &copy; {new Date().getFullYear()}
+      <a href="https://nathanblaylock.com" target="_blank">Nathan Blaylock</a>
+    </div>
   </div>
   {#snippet actions()}
     <div class="container">
