@@ -35,6 +35,13 @@
       right: 0;
     }
   }
+  :global([data-bs-theme='dark']) .grid-bg {
+    background-color: var(--bs-dark);
+    background-image: url('/img/grid-dot.svg');
+    &:after{
+      background: linear-gradient(180deg, rgba(20, 21, 24, 0) 0%, rgba(20, 21, 24, 1) 100%);
+    }
+  }
 
   .outer-flex-container {
     display: flex;

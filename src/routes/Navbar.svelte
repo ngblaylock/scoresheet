@@ -111,4 +111,9 @@
       }
     }
   }
+  :global([data-bs-theme='dark']) .scoresheet-navbar {
+    background-color: var(--bs-dark);
+    background-image: url('/img/grid-dot.svg');
+    border-bottom: 2px solid var(--bs-blue-200);
+  }
 </style>
