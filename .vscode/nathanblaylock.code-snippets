@@ -24,7 +24,7 @@
 
   "Global Button": {
     "prefix": "G-Btn",
-    "body": ["<GBtn variant=\"${2:primary}\">$1</GBtn>"],
+    "body": ["<GBtn>$1</GBtn>"],
     "description": "Global button component.",
     "scope": "svelte",
   },
@@ -50,6 +50,51 @@
     "prefix": "G-IconBtn",
     "body": ["<GIconBtn icon=\"${2:home}\" title=\"$3\" />"],
     "description": "Global icon button component.",
+    "scope": "svelte",
+  },
+  "Global SortableCards": {
+    "prefix": "G-SortableCards",
+    "body": [
+      "<GSortableCards bind:items={$1}>",
+      "  {#snippet children(item, index)}",
+      "    <div class=\"p-3\">",
+      "      ${2:{index\\} - {JSON.stringify(item)\\}}",
+      "    </div>",
+      "  {/snippet}",
+      "</GSortableCards>",
+    ],
+    "description": "Global sortable cards component.",
+    "scope": "svelte",
+  },
+  // FORMS
+  "Global Checkbox": {
+    "prefix": "G-Checkbox",
+    "body": ["<GCheckbox label=\"$1\" />"],
+    "description": "Global checkbox component.",
+    "scope": "svelte",
+  },
+  "Global Checkbox Group": {
+    "prefix": "G-CheckboxGroup",
+    "body": ["<GCheckboxGroup items={$1} bind:group={$2} />"],
+    "description": "Global checkbox group component.",
+    "scope": "svelte",
+  },
+  "Global Radio Group": {
+    "prefix": "G-RadioGroup",
+    "body": ["<GRadioGroup items={$1} bind:group={$2} />"],
+    "description": "Global radio group component.",
+    "scope": "svelte",
+  },
+  "Global Segmented Control": {
+    "prefix": "G-SegmentedControl",
+    "body": ["<GSegmentedControl items={$1} bind:group={$2} />"],
+    "description": "Global segmented control component.",
+    "scope": "svelte",
+  },
+  "Global TextInput": {
+    "prefix": "G-TextInput",
+    "body": ["<GTextInput label=\"$1\" />"],
+    "description": "Global text input component.",
     "scope": "svelte",
   },
 }

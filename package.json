@@ -19,7 +19,7 @@
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^4.0.0",
 		"@types/node": "^22.13.0",
-		"nathanblaylock.com": "github:ngblaylock/nathanblaylock.com#v2.2.5",
+		"nathanblaylock.com": "github:ngblaylock/nathanblaylock.com#v2.3.2",
 		"prettier": "^3.3.2",
 		"prettier-plugin-svelte": "^3.2.6",
 		"sass": "^1.83.4",

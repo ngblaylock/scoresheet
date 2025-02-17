@@ -3,6 +3,7 @@
   import { themeSwitcher } from '@ngblaylock/bootstrap-extensions';
   import { onMount } from 'svelte';
   import type { IconName } from 'nathanblaylock.com/icons';
+  import NavbarDevOffcanvas from './NavbarDevOffcanvas.svelte';
 
   if (import.meta.hot) {
     import.meta.hot.accept(() => {
@@ -23,6 +24,10 @@
     e.stopPropagation();
     themeSwitcher.toggleTheme();
     currentTheme = themeSwitcher.getStoredTheme() || 'system';
+  }
+
+  function goBack() {
+    return () => history.back();
   }
 </script>
 
@@ -53,8 +58,14 @@
 {/snippet}
 
 <nav class="scoresheet-navbar p-2 z-1">
-  <GIconBtn icon="arrowLeft" title="Back" variant="base-i4" />
-  <div class="flex-fill text-center text-sm-start fs-4 px-4 font-cursive">Scoresheet</div>
+  <GIconBtn icon="arrowLeft" title="Back" variant="base-i4" onclick={goBack()} />
+  <div class="flex-fill px-4">
+    {#if dev}
+      <NavbarDevOffcanvas />
+    {:else}
+      <div class="fs-4 font-cursive text-center text-sm-start">Scoresheet</div>
+    {/if}
+  </div>
   <!-- sm+ menu -->
   <div class="d-none d-sm-flex align-items-center gap-3">
     {@render links('scoresheet-nav', 'btn btn-sm btn-base-1', false)}
