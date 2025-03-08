@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { goto } from '$app/navigation';
   import MainContent from '$components/MainContent.svelte';
   import { tick } from 'svelte';
 
@@ -34,6 +35,7 @@
       winnerDeterminate
     };
     window.localStorage.setItem('currentGame', JSON.stringify(game));
+    goto('/game/enter');
   }
 </script>
 
