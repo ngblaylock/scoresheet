@@ -25,5 +25,10 @@
   </div>
   <div class="offcanvas-body">
     <GBtn href="https://nathanblaylock.com/uikit/" target="_blank" variant="light">UI Kit</GBtn>
+    <GBtn
+      href="https://github.com/ngblaylock/scoresheet/projects?query=is%3Aopen"
+      target="_blank"
+      variant="light">GitHub Project</GBtn
+    >
   </div>
 </div>
