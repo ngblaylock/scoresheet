@@ -1,3 +1,52 @@
+<script lang="ts">
+  function setGame(game: G.Game) {
+    window.localStorage.setItem('currentGame', JSON.stringify(game));
+    window.location.reload();
+  }
+  function setGame1() {
+    const game = {
+      id: 1741410613594,
+      players: [
+        {
+          name: 'Brian',
+          rounds: [48, 58, 6, 45, 45, 5, 15, 1520],
+        },
+        {
+          name: 'Nathan',
+          rounds: [10, null, 0, 0, null, null, null, 78],
+        },
+      ],
+      winnerDeterminate: 'Highest Score Wins',
+    };
+    setGame(game);
+  }
+  function setGame2() {
+    const game = {
+      id: 1741414061359,
+      players: [
+        {
+          name: 'George',
+          rounds: [412, 58, -8],
+        },
+        {
+          name: 'Abraham',
+          rounds: [10, null, 0],
+        },
+        {
+          name: 'James',
+          rounds: [78, 13, 8],
+        },
+        {
+          name: 'James',
+          rounds: [null, null, 4],
+        },
+      ],
+      winnerDeterminate: 'Lowest Score Wins',
+    };
+    setGame(game);
+  }
+</script>
+
 <div class="font-cursive text-center text-sm-start">
   <GBtn
     variant="dev"
@@ -14,7 +63,12 @@
   aria-labelledby="dev-offcanvas-label"
 >
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="dev-offcanvas-label">Dev Tools</h5>
+    <h5
+      class="offcanvas-title"
+      id="dev-offcanvas-label"
+    >
+      Dev Tools
+    </h5>
     <GIconBtn
       icon="close"
       title="Close Offcanvas"
@@ -24,11 +78,23 @@
     />
   </div>
   <div class="offcanvas-body">
-    <GBtn href="https://nathanblaylock.com/uikit/" target="_blank" variant="light">UI Kit</GBtn>
+    <GBtn
+      href="https://nathanblaylock.com/uikit/"
+      target="_blank"
+      variant="light"
+    >
+      UI Kit
+    </GBtn>
     <GBtn
       href="https://github.com/ngblaylock/scoresheet/projects?query=is%3Aopen"
       target="_blank"
-      variant="light">GitHub Project</GBtn
+      variant="light"
     >
+      GitHub Project
+    </GBtn>
+    <br />
+    <br />
+    <GBtn onclick={setGame1}>Set Game 1</GBtn>
+    <GBtn onclick={setGame2}>Set Game 2</GBtn>
   </div>
 </div>

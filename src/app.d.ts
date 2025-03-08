@@ -11,7 +11,7 @@ declare global {
   namespace G { // Global Types. Use like G.Player or G.Game
     interface Player {
       name: string;
-      rounds: number[];
+      rounds: (number|null)[];
     }
     interface Game {
       id: number;
