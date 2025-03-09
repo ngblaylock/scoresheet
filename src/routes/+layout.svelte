@@ -2,6 +2,7 @@
   import 'nathanblaylock.com/styles';
   import Favicons from './Favicons.svelte';
   import Navbar from './Navbar.svelte';
+  import DeviceDetection from './DeviceDetection.svelte';
 </script>
 
 <Favicons />
@@ -13,6 +14,8 @@
     <slot />
   </div>
 </div>
+
+<DeviceDetection />
 
 <style lang="scss">
   .grid-bg {
@@ -38,7 +41,7 @@
   :global([data-bs-theme='dark']) .grid-bg {
     background-color: var(--bs-dark);
     background-image: url('/img/grid-dot.svg');
-    &:after{
+    &:after {
       background: linear-gradient(180deg, rgba(20, 21, 24, 0) 0%, rgba(20, 21, 24, 1) 100%);
     }
   }
