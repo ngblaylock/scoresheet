@@ -1,7 +1,16 @@
 <script lang="ts">
-  function setGame(game: G.Game) {
+  import { goto } from '$app/navigation';
+  import { page } from '$app/state';
+
+  async function setGame(game: G.Game) {
     window.localStorage.setItem('currentGame', JSON.stringify(game));
-    window.location.reload();
+
+    if (page.route.id === '/game') {
+      window.location.reload();
+    } else {
+      await goto('/game');
+      document.getElementById('scoresheet-dev-btn')?.click();
+    }
   }
   function setGame1() {
     const game = {
@@ -49,12 +58,15 @@
 
 <div class="font-cursive text-center text-sm-start">
   <GBtn
+    id="scoresheet-dev-btn"
     variant="dev"
     class="btn-sm"
     data-bs-toggle="offcanvas"
     data-bs-target="#dev-offcanvas"
-    aria-controls="dev-offcanvas">Scoresheet Dev</GBtn
+    aria-controls="dev-offcanvas"
   >
+    Scoresheet Dev
+  </GBtn>
 </div>
 <div
   class="offcanvas offcanvas-top text-bg-dev"
