@@ -1,13 +1,22 @@
 <script lang="ts">
+  import type { IconName } from 'nathanblaylock.com/icons';
   import MainContent from '$components/MainContent.svelte';
-  import { getCurrentGame } from '$lib';
-  import { onMount } from 'svelte';
+  import ScoresTable from '$components/ScoresTable.svelte';
+  import ScoresChart from '$components/ScoresChart.svelte';
 
-  let currentGame = $state();
-
-  onMount(() => {
-    currentGame = getCurrentGame();
-  });
+  let scItems: { label: string; value: unknown; icon?: IconName }[] = $state([
+    {
+      label: 'Table View',
+      value: 'table',
+      icon: 'table',
+    },
+    {
+      label: 'Graph View',
+      value: 'graph',
+      icon: 'chartLine',
+    },
+  ]);
+  let view = $state(scItems[0].value);
 </script>
 
 <MainContent>
@@ -74,17 +83,21 @@
           </li>
         </ul>
       </div>
-
-      <GIconBtn
-        variant="base-i1"
-        icon="chartLine"
-        title="Chart View"
-      />
     </div>
-    <GDebug data={currentGame} />
+    {#if view === 'table'}
+      <ScoresTable />
+    {:else}
+      <ScoresChart />
+    {/if}
   </div>
   {#snippet actions()}
     <div class="container">
+      <div class="text-center mb-3">
+        <GSegmentedControl
+          items={scItems}
+          bind:group={view}
+        />
+      </div>
       <div class="hstack justify-content-center">
         <GBtn href="/game/enter">Add Scores</GBtn>
         <GBtn
