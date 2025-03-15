@@ -25,7 +25,7 @@
           rounds: [10, null, 0, 0, null, null, null, 78, 4, 28, 48, 9, 0, 0, 0],
         },
       ],
-      winnerDeterminate: 'Highest Score Wins',
+      sortOrder: 'desc' as const,
     };
     setGame(game);
   }
@@ -50,7 +50,7 @@
           rounds: [null, null, 4],
         },
       ],
-      winnerDeterminate: 'Highest Score Wins',
+      sortOrder: 'asc' as const,
     };
     setGame(game);
   }

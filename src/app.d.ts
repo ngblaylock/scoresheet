@@ -17,7 +17,7 @@ declare global {
     interface Game {
       id: number;
       players: Player[];
-      winnerDeterminate: string;
+      sortOrder: 'asc' | 'desc';
     }
   }
 }

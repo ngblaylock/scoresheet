@@ -47,8 +47,7 @@ const getTotals = () => {
         });
         return {...player, total, totalByRound}
       });
-      const sortDir = game.winnerDeterminate.includes('Lowest')  ? 'asc' : 'desc';
-      return orderBy(totals, ['total'], [sortDir]);
+      return orderBy(totals, ['total'], [game.sortOrder]);
     }
   }
   return [];
