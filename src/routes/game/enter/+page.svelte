@@ -8,28 +8,37 @@
   let players: { name: string; score: number | null }[] = $state([]);
 
   onMount(() => {
-    round = getCurrentRound();
-    players = getPlayers().map((player) => ({ name: player, score: null }));
+    round = getCurrentRound() || 1;
+    const tempPlayers = getPlayers();    
+    if (!tempPlayers) {
+      goto('/game');
+    } else {
+      players = tempPlayers.map((player) => ({ name: player, score: null }));
+    }
   });
 
   function completeRound(e: Event) {
     e.preventDefault();
-
     const currentGame = getCurrentGame();
-    players.forEach((player) => {
-      const foundPlayer = currentGame.players.find((cgp) => cgp.name === player.name);
-      if (foundPlayer) {
-        foundPlayer.rounds.push(player.score);
-      }
-    });
-    setCurrentGame(currentGame);
+    if (currentGame) {
+      players.forEach((player) => {
+        const foundPlayer = currentGame.players.find((cgp) => cgp.name === player.name);
+        if (foundPlayer) {
+          foundPlayer.rounds.push(player.score);
+        }
+      });
+      setCurrentGame(currentGame);
+    }
     goto('/game');
   }
 </script>
 
 {#if round}
   <MainContent>
-    <form onsubmit={completeRound} id="add-form">
+    <form
+      onsubmit={completeRound}
+      id="add-form"
+    >
       <div class="container">
         <h1 class="font-cursive text-center">Round {round} Scores</h1>
 
@@ -55,7 +64,10 @@
     {#snippet actions()}
       <div class="container">
         <div class="hstack justify-content-center">
-          <GBtn type="submit" form="add-form">Complete Round {round}</GBtn>
+          <GBtn
+            type="submit"
+            form="add-form">Complete Round {round}</GBtn
+          >
           <GBtn
             href="/game/final"
             variant="base-2">End Game</GBtn

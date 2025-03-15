@@ -1,6 +1,8 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
   import MainContent from '$components/MainContent.svelte';
+    import { setCurrentGame } from '$lib';
+    import { nanoid } from 'nanoid';
   import { tick } from 'svelte';
 
   let players = $state([{ name: '' }]);
@@ -8,12 +10,12 @@
   let winnerOptions = [
     {
       label: 'Highest Score Wins',
-      value: 'desc'
+      value: 'desc',
     },
     {
       label: 'Lowest Score Wins',
-      value: 'asc'
-    }
+      value: 'asc',
+    },
   ];
 
   async function addPlayer() {
@@ -30,11 +32,12 @@
         .filter((p) => p.name)
         .map((p) => ({
           ...p,
-          rounds: []
+          playerId: nanoid(),
+          rounds: [],
         })),
-      sortOrder: sortOrder as 'desc' | 'asc'
+      sortOrder: sortOrder as 'desc' | 'asc',
     };
-    window.localStorage.setItem('currentGame', JSON.stringify(game));
+    setCurrentGame(game);
     goto('/game/enter');
   }
 </script>
