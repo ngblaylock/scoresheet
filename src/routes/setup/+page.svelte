@@ -4,15 +4,15 @@
   import { tick } from 'svelte';
 
   let players = $state([{ name: '' }]);
-  let winnerDeterminate = $state('Highest Score Wins');
+  let sortOrder = $state('desc');
   let winnerOptions = [
     {
       label: 'Highest Score Wins',
-      value: 'Highest Score Wins'
+      value: 'desc'
     },
     {
       label: 'Lowest Score Wins',
-      value: 'Lowest Score Wins'
+      value: 'asc'
     }
   ];
 
@@ -32,7 +32,7 @@
           ...p,
           rounds: []
         })),
-      winnerDeterminate
+      sortOrder: sortOrder as 'desc' | 'asc'
     };
     window.localStorage.setItem('currentGame', JSON.stringify(game));
     goto('/game/enter');
@@ -82,7 +82,7 @@
       <div>
         <GRadioGroup
           items={winnerOptions}
-          bind:group={winnerDeterminate}
+          bind:group={sortOrder}
         />
       </div>
       <div class="text-center">
