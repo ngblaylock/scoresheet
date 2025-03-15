@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { onMount, tick } from 'svelte';
   import { goto } from '$app/navigation';
   import { page } from '$app/state';
   import { getCurrentGame, setCurrentGame } from '$lib';
@@ -22,7 +22,8 @@
     }
   });
 
-  function updateScores() {
+  function updateScores(e: SubmitEvent) {
+    e.preventDefault();
     const game = getCurrentGame();
     if (game) {
       const foundPlayer = game.players.find((player) => player.name === name);
@@ -36,7 +37,10 @@
 </script>
 
 <MainContent>
-  <form onsubmit="{updateScores}" id="edit-scores">
+  <form
+    onsubmit={updateScores}
+    id="edit-scores"
+  >
     <div class="container">
       <h1 class="font-cursive text-center">Edit Scores</h1>
       <h2 class="font-cursive text-center">{name}</h2>
@@ -54,7 +58,10 @@
   {#snippet actions()}
     <div class="container">
       <div class="hstack justify-content-center">
-        <GBtn type="submit" form="edit-scores">Update Scores</GBtn>
+        <GBtn
+          type="submit"
+          form="edit-scores">Update Scores</GBtn
+        >
       </div>
     </div>
   {/snippet}
