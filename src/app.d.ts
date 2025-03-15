@@ -9,9 +9,10 @@ declare global {
     // interface Platform {}
   }
   namespace G { // Global Types. Use like G.Player or G.Game
+    type Round = number | null;
     interface Player {
       name: string;
-      rounds: (number|null)[];
+      rounds: Round[];
     }
     interface Game {
       id: number;

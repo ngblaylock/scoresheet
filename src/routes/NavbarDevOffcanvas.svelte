@@ -18,11 +18,11 @@
       players: [
         {
           name: 'Brian',
-          rounds: [48, 58, 6, 45, 45, 5, 15, 1520],
+          rounds: [48, 58, 6, 45, 45, 5, 15, 20, 78, 28, 48, -9, null, 9, 0],
         },
         {
           name: 'Nathan',
-          rounds: [10, null, 0, 0, null, null, null, 78],
+          rounds: [10, null, 0, 0, null, null, null, 78, 4, 28, 48, 9, 0, 0, 0],
         },
       ],
       winnerDeterminate: 'Highest Score Wins',
@@ -46,11 +46,11 @@
           rounds: [78, 13, 8],
         },
         {
-          name: 'James',
+          name: 'Thomas',
           rounds: [null, null, 4],
         },
       ],
-      winnerDeterminate: 'Lowest Score Wins',
+      winnerDeterminate: 'Highest Score Wins',
     };
     setGame(game);
   }
