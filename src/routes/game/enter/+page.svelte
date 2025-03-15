@@ -1,5 +1,6 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
+    import CardEnterScore from '$components/CardEnterScore.svelte';
   import MainContent from '$components/MainContent.svelte';
   import { getCurrentGame, getCurrentRound, getPlayers, setCurrentGame } from '$lib';
   import { onMount } from 'svelte';
@@ -44,19 +45,7 @@
 
         <div class="vstack">
           {#each players as player, index}
-            <div class="card text-bg-base-2 shadow-sm px-4 py-2 hstack">
-              <label
-                class="font-cursive flex-fill"
-                for="score-add-{index}">{player.name}</label
-              >
-              <input
-                class="form-control"
-                style="width: 50%;"
-                bind:value={player.score}
-                type="number"
-                id="score-add-{index}"
-              />
-            </div>
+            <CardEnterScore label={player.name} bind:score={player.score} />
           {/each}
         </div>
       </div>
@@ -77,15 +66,3 @@
     {/snippet}
   </MainContent>
 {/if}
-
-<style lang="scss">
-  input[type='number']::-webkit-outer-spin-button,
-  input[type='number']::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-  input[type='number'] {
-    -moz-appearance: textfield;
-    appearance: textfield;
-  }
-</style>

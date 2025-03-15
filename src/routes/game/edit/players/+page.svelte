@@ -90,7 +90,6 @@
         Add Player
       </GBtn>
     </div>
-    <GDebug data={players} />
   </div>
 
   {#snippet actions()}
