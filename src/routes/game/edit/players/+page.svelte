@@ -49,6 +49,7 @@
       currentGame.players = newPlayers;
       setCurrentGame(currentGame);
     }
+    goto('/game');
   }
 </script>
 
