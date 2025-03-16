@@ -12,6 +12,7 @@ declare global {
     type Round = number | null;
     interface Player {
       name: string;
+      playerId: string;
       rounds: Round[];
     }
     interface Game {

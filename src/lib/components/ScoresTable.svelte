@@ -1,8 +1,9 @@
 <script lang="ts">
   import { getTotals } from '$lib';
   import { onMount } from 'svelte';
-  const tableData = getTotals();
-  const rounds = tableData[0]?.rounds.map((round, index) => index + 1);
+
+  let {gameTotals}: {gameTotals: ReturnType<typeof getTotals>} = $props();
+  const rounds = gameTotals[0]?.rounds.map((round, index) => index + 1);
   let tableContainer: HTMLDivElement | undefined = $state();
 
   onMount(() => {
@@ -10,7 +11,7 @@
   });
 </script>
 
-{#if tableData.length}
+{#if gameTotals.length}
   <div
     class="table-responsive"
     bind:this={tableContainer}
@@ -22,11 +23,11 @@
           {#each rounds as round}
             <th class="text-center">{round}</th>
           {/each}
-          <th>Total</th>
+          <th class="text-center">Total</th>
         </tr>
       </thead>
       <tbody>
-        {#each tableData as player}
+        {#each gameTotals as player}
           <tr style="vertical-align: middle;">
             <td class="sticky-col">{player.name}</td>
             {#each player.rounds as round, index}
@@ -35,7 +36,7 @@
                 <small class="text-base-i4">{player.totalByRound[index]}</small>
               </td>
             {/each}
-            <td><strong>{player.total}</strong></td>
+            <td class="text-center"><strong>{player.total}</strong></td>
           </tr>
         {/each}
       </tbody>

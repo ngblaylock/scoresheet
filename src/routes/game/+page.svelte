@@ -1,5 +1,10 @@
 <script lang="ts">
   import type { IconName } from 'nathanblaylock.com/icons';
+  import { getCurrentGame, getTotals, setCurrentGame } from '$lib';
+  import { goto } from '$app/navigation';
+  import { browser } from '$app/environment';
+  import { onMount } from 'svelte';
+
   import MainContent from '$components/MainContent.svelte';
   import ScoresTable from '$components/ScoresTable.svelte';
   import ScoresChart from '$components/ScoresChart.svelte';
@@ -17,6 +22,29 @@
     },
   ]);
   let view = $state(scItems[0].value);
+
+  let game = $state(getCurrentGame());
+  let gameTotals = $state(getTotals());
+
+  onMount(() => {
+    if (!game) goto('/');
+  });
+
+  let winnerDeterminateOptions = $state([
+    { label: 'Highest Score Wins', value: 'desc' },
+    { label: 'Lowest Score Wins', value: 'asc' },
+  ]);
+
+  let winnerDeterminate = $state(getCurrentGame()?.sortOrder);
+
+  function updateCurrentGame() {
+    if (game) {
+      game.sortOrder = winnerDeterminate as 'asc' | 'desc';
+      setCurrentGame(game);
+      game = getCurrentGame();
+      gameTotals = getTotals();
+    }
+  }
 </script>
 
 <MainContent>
@@ -49,43 +77,18 @@
           </li>
           <li><hr class="dropdown-divider" /></li>
           <li class="px-3">
-            <div>
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="flexRadioDefault"
-                  id="flexRadioDefault1"
-                />
-                <label
-                  class="form-check-label text-nowrap"
-                  for="flexRadioDefault1"
-                >
-                  Highest Score Wins
-                </label>
-              </div>
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="flexRadioDefault"
-                  id="flexRadioDefault2"
-                  checked
-                />
-                <label
-                  class="form-check-label"
-                  for="flexRadioDefault2"
-                >
-                  Lowest Score Wins
-                </label>
-              </div>
-            </div>
+            <GRadioGroup
+              items={winnerDeterminateOptions}
+              bind:group={winnerDeterminate}
+              legend="Car Brands"
+              onchange={updateCurrentGame}
+            />
           </li>
         </ul>
       </div>
     </div>
     {#if view === 'table'}
-      <ScoresTable />
+      <ScoresTable {gameTotals} />
     {:else}
       <ScoresChart />
     {/if}
