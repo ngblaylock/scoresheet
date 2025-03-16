@@ -16,6 +16,8 @@
       const foundPlayer = currentGame.players.find((player) => player.name === name);
       if (foundPlayer) {
         rounds = foundPlayer.rounds;
+      } else {
+        goto('/game');
       }
     } else {
       goto('/game');
