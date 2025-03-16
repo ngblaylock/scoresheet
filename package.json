@@ -22,7 +22,7 @@
 		"@types/node": "^22.13.0",
 		"lodash": "^4.17.21",
 		"nanoid": "^5.1.3",
-		"nathanblaylock.com": "github:ngblaylock/nathanblaylock.com#v2.3.6",
+		"nathanblaylock.com": "github:ngblaylock/nathanblaylock.com#v2.3.7",
 		"prettier": "^3.3.2",
 		"prettier-plugin-svelte": "^3.2.6",
 		"sass": "^1.83.4",
