@@ -19,6 +19,6 @@
 <style lang="scss">
   .main-section {
     flex: 1 0 auto;
-    background: transparent;
+    background: transparent; // for some reason this is needed for cloudflare pages
   }
 </style>
