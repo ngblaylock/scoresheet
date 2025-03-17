@@ -19,6 +19,5 @@
 <style lang="scss">
   .main-section {
     flex: 1 0 auto;
-    background: green;
   }
 </style>
