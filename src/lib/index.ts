@@ -67,7 +67,7 @@ const getMinMaxAvg = () => {
     return {
       min: min(totalScoresOnly),
       max: max(totalScoresOnly),
-      avg: mean(totalScoresOnly),
+      avg: Number(mean(totalScoresOnly).toFixed(2)),
     };
   }
 };
