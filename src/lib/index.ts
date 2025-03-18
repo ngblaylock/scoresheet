@@ -1,6 +1,5 @@
 import { browser } from '$app/environment';
-import { goto } from '$app/navigation';
-import orderBy from 'lodash/orderBy';
+import { max, mean, min, orderBy } from 'lodash-es';
 
 const getCurrentGame = () => {
   if (browser) {
@@ -31,13 +30,18 @@ const getCompletedRoundsCount = () => {
   }
 };
 
-const getTotals = () => {
+type PlayerTotal = G.Player & {
+  total: number;
+  totalByRound: number[];
+};
+
+const getTotals = (): PlayerTotal[] => {
   if (browser) {
     const game = getCurrentGame();
     if (game?.players) {
       const totals = game.players.map((player) => {
         let total = 0;
-        let totalByRound: G.Round[] = [];
+        let totalByRound: number[] = [];
         player.rounds.forEach((round) => {
           if (round) {
             total += round;
@@ -48,17 +52,30 @@ const getTotals = () => {
         return { ...player, total, totalByRound };
       });
       return orderBy(totals, ['total'], [game.sortOrder]);
-    } else {
-      goto('/');
     }
   }
   return [];
 };
 
+const getMinMaxAvg = () => {
+  if (browser) {
+    const totals = getTotals();
+    if (!totals) return;
+    const totalScoresOnly = totals
+      .map((total) => total.total)
+      .filter((val) => typeof val === 'number');
+    return {
+      min: min(totalScoresOnly),
+      max: max(totalScoresOnly),
+      avg: mean(totalScoresOnly),
+    };
+  }
+};
+
 const getPlayers = () => {
   if (browser) {
     const currentGame = getCurrentGame();
-    if(!currentGame) return;
+    if (!currentGame) return;
     return currentGame.players.map((player) => player.name);
   }
 };
@@ -69,5 +86,6 @@ export {
   getCurrentRound,
   getCompletedRoundsCount,
   getTotals,
+  getMinMaxAvg,
   getPlayers,
 };

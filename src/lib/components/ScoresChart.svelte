@@ -1,1 +1,1 @@
-<GDevNote>Chart View</GDevNote>
+TODO: CHART VIEW
