@@ -76,11 +76,10 @@
             >
           </li>
           <li><hr class="dropdown-divider" /></li>
-          <li class="px-3">
+          <li class="px-3 mb-n2">
             <GRadioGroup
               items={winnerDeterminateOptions}
               bind:group={winnerDeterminate}
-              legend="Car Brands"
               onchange={updateCurrentGame}
             />
           </li>
