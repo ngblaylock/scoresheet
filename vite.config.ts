@@ -1,18 +1,39 @@
-import { readFileSync } from 'fs';
-import { fileURLToPath } from 'url';
-
-const file = fileURLToPath(new URL('package.json', import.meta.url));
-const json = readFileSync(file, 'utf8');
-const pkg = JSON.parse(json);
-
 import { sveltekit } from '@sveltejs/kit/vite';
-import type { UserConfig } from 'vite';
+import { defineConfig } from 'vite';
+import Components from 'unplugin-svelte-components/vite';
+import fs from 'fs';
+import path from 'path';
 
-const config: UserConfig = {
-	plugins: [sveltekit()],
-	define: {
-		__APP_VERSION__: JSON.stringify(pkg.version),
-	},
-};
+// For auto-importing nathanblaylock.com components
+// Path to the third-party components
+const componentsDir = path.resolve('node_modules/nathanblaylock.com/dist/');
 
-export default config;
+// Get all Svelte file names dynamically
+const componentNames = fs.readdirSync(componentsDir)
+  .filter(file => file.endsWith('.svelte'))
+  .map(file => file.replace('.svelte', ''));
+
+export default defineConfig({
+  plugins: [
+    Components({ // https://github.com/Mohamed-Kaizen/unplugin-svelte-components
+      dirs: [],
+      allowOverrides: true,
+      external: [
+        {
+          from: 'nathanblaylock.com',
+          names: componentNames,
+          defaultImport: false
+        }
+      ],
+      eslintrc: { enabled: false }
+    }),
+    sveltekit()
+  ],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler' // or "modern"
+      }
+    }
+  }
+});

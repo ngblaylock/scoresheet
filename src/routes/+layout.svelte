@@ -1,103 +1,59 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { navigating } from '$app/stores';
-	import { dev } from '$app/environment';
-	import DevToolbar from '$lib/DevToolbar.svelte';
-
-	import '../app.css';
-	onMount(() => {
-		const appHeight = () => {
-			const doc = document.documentElement;
-			doc.style.setProperty(` — app-height`, `${window.innerHeight}px`);
-		};
-		window.addEventListener(`resize`, appHeight);
-		appHeight();
-	});
-
-	const myFunction = () => {
-		var myDiv = document.getElementById('scroll-container');
-		myDiv!.scrollTop = 0;
-	};
-
-	$: if ($navigating) myFunction();
+  import 'nathanblaylock.com/styles';
+  import Favicons from './Favicons.svelte';
+  import Navbar from './Navbar.svelte';
+  import DeviceDetection from './DeviceDetection.svelte';
 </script>
 
-<div class="h-screen flex {dev ? 'pt-4' : null}">
-	<DevToolbar />
-	<div class="flex-1">
-		<div class="h-full flex flex-col" id="scroll-container">
-			<slot />
-		</div>
-	</div>
+<Favicons />
+
+<div class="grid-bg"></div>
+<div class="outer-flex-container">
+  <div class="inner-flex-container">
+    <Navbar />
+    <slot />
+  </div>
 </div>
 
-<svelte:head>
-	{#if dev}
-		<link rel="shortcut icon" href="/favicon-dev.ico" />
-		<link
-			rel="apple-touch-icon"
-			sizes="180x180"
-			href="/favicons/apple-touch-icon-dev.png"
-		/>
-		<link
-			rel="icon"
-			type="image/png"
-			sizes="32x32"
-			href="/favicons/favicon-32x32-dev.png"
-		/>
-		<link
-			rel="icon"
-			type="image/png"
-			sizes="16x16"
-			href="/favicons/favicon-16x16-dev.png"
-		/>
-	{:else}
-		<script
-			async
-			src="https://www.googletagmanager.com/gtag/js?id=G-SVRZDR3MH4"
-		></script>
-		<script>
-			window.dataLayer = window.dataLayer || [];
-			function gtag() {
-				dataLayer.push(arguments);
-			}
-			gtag('js', new Date());
-
-			gtag('config', 'G-SVRZDR3MH4');
-		</script>
-		<link
-			rel="apple-touch-icon"
-			sizes="180x180"
-			href="/favicons/apple-touch-icon.png"
-		/>
-		<link
-			rel="icon"
-			type="image/png"
-			sizes="32x32"
-			href="/favicons/favicon-32x32.png"
-		/>
-		<link
-			rel="icon"
-			type="image/png"
-			sizes="16x16"
-			href="/favicons/favicon-16x16.png"
-		/>
-	{/if}
-	<link rel="manifest" href="/favicons/site.webmanifest" />
-	<link
-		rel="mask-icon"
-		href="/favicons/safari-pinned-tab.svg"
-		color="#210201"
-	/>
-	<meta name="apple-mobile-web-app-title" content="Scoresheet" />
-	<meta name="application-name" content="Scoresheet" />
-	<meta name="msapplication-TileColor" content="#ffffff" />
-	<meta name="theme-color" content="#ffffff" />
-	<meta name="viewport" content="width=device-width" />
-</svelte:head>
+<DeviceDetection />
 
 <style lang="scss">
-	#scroll-container {
-		overflow-y: auto;
-	}
+  .grid-bg {
+    background-color: white;
+    background-image: url('/img/grid.svg');
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -100;
+    &:after {
+      content: '';
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+  }
+  :global([data-bs-theme='dark']) .grid-bg {
+    background-color: var(--bs-dark);
+    background-image: url('/img/grid-dot.svg');
+    &:after {
+      background: linear-gradient(180deg, rgba(20, 21, 24, 0) 0%, rgba(20, 21, 24, 1) 100%);
+    }
+  }
+
+  .outer-flex-container {
+    display: flex;
+  }
+
+  .inner-flex-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+  }
 </style>
