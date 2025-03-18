@@ -58,26 +58,24 @@ const getTotals = (): PlayerTotal[] => {
 };
 
 const getMinMaxAvg = () => {
-if(browser){
-  const totals = getTotals();
-  
-  if(!totals) return;
-  console.log(totals);
-  const totalScoresOnly = totals.map(total => total.total).filter(val => typeof val === 'number')
-  console.log(totalScoresOnly);
-  return {
-    min: min(totalScoresOnly),
-    max: max(totalScoresOnly),
-    avg: mean(totalScoresOnly),
+  if (browser) {
+    const totals = getTotals();
+    if (!totals) return;
+    const totalScoresOnly = totals
+      .map((total) => total.total)
+      .filter((val) => typeof val === 'number');
+    return {
+      min: min(totalScoresOnly),
+      max: max(totalScoresOnly),
+      avg: mean(totalScoresOnly),
+    };
   }
-  
-}
-}
+};
 
 const getPlayers = () => {
   if (browser) {
     const currentGame = getCurrentGame();
-    if(!currentGame) return;
+    if (!currentGame) return;
     return currentGame.players.map((player) => player.name);
   }
 };
