@@ -2,8 +2,10 @@
   import { getTotals } from '$lib';
   import { onMount } from 'svelte';
 
-  let {gameTotals}: {gameTotals: ReturnType<typeof getTotals>} = $props();
-  const rounds = gameTotals[0]?.rounds.map((round, index) => index + 1);
+  let { gameTotals }: { gameTotals: ReturnType<typeof getTotals> } = $props();
+  let rounds = $derived.by(() => {
+    return gameTotals[0]?.rounds.map((_round, index) => index + 1);
+  });
   let tableContainer: HTMLDivElement | undefined = $state();
 
   onMount(() => {
@@ -11,7 +13,7 @@
   });
 </script>
 
-{#if gameTotals.length}
+{#if gameTotals?.length}
   <div
     class="table-responsive"
     bind:this={tableContainer}
