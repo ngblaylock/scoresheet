@@ -10,7 +10,7 @@
   {#snippet actions()}
     <div class="container">
       <div class="hstack justify-content-center">
-        <GBtn href="/game">Start Over</GBtn>
+        <GBtn href="/setup/?restart=true">Restart</GBtn>
         <GBtn
           href="/"
           variant="base-2">New Game</GBtn

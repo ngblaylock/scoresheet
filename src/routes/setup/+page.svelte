@@ -1,7 +1,8 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
-  import { setCurrentGame } from '$lib';
+  import { getCurrentGame, setCurrentGame } from '$lib';
   import { nanoid } from 'nanoid';
+  import { page } from '$app/state';
 
   import MainContent from '$components/MainContent.svelte';
   import PlayersAddEdit from '$components/PlayersAddEdit.svelte';
@@ -19,6 +20,16 @@
   ];
 
   let players = $state([{ name: '' }]);
+  
+  $effect(() => {
+    const restart = page.url.searchParams.get('restart');
+    if (restart === 'true') {
+      const currentGame = getCurrentGame();
+      if(currentGame?.players.length){
+        players = currentGame.players.map(p => ({name: p.name}))
+      }      
+    }
+  })
 
   let addPlayerForm: HTMLFormElement | undefined = $state();
   function createGame() {
