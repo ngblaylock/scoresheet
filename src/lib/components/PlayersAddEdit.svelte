@@ -1,7 +1,7 @@
 <script lang="ts">
   import { tick } from 'svelte';
 
-  let {players = $bindable(), addPlayerForm = $bindable()} = $props();
+  let { players = $bindable(), addPlayerForm = $bindable() } = $props();
 
   async function addPlayer() {
     players.push({ name: '' });
@@ -36,16 +36,18 @@
             bind:value={player.name}
             hideLabel
             id="new-player-{index}"
-            oninput={updateValidation}
             required
+            oninput={updateValidation}
           />
           <GIconBtn
             icon="close"
             variant="base-i4"
             title="Remove"
             type="button"
-            onclick={() => {
+            onclick={async () => {
               players.splice(index, 1);
+              await tick;
+              updateValidation();
             }}
           />
         </div>
