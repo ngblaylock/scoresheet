@@ -36,10 +36,34 @@
 {/if}
 
 {#snippet links(ulClass: string, linkClass: string, showThemeSwitch: boolean = false)}
-  <ul class={ulClass} style="--bs-dropdown-min-width: 13rem;">
-    <li><a class={linkClass} href="/">New Game</a></li>
-    <li><a class={linkClass} href="/setup">Restart</a></li>
-    <li><a class={linkClass} href="/about">About</a></li>
+  <ul
+    class={ulClass}
+    style="--bs-dropdown-min-width: 13rem;"
+  >
+    <li>
+      <a
+        class={linkClass}
+        href="/setup/?restart=true"
+      >
+        Restart
+      </a>
+    </li>
+    <li>
+      <a
+        class={linkClass}
+        href="/"
+      >
+        New Game
+      </a>
+    </li>
+    <li>
+      <a
+        class={linkClass}
+        href="/about/"
+      >
+        About
+      </a>
+    </li>
     {#if showThemeSwitch}
       <li><hr class="dropdown-divider" /></li>
       <li>
@@ -58,7 +82,12 @@
 {/snippet}
 
 <nav class="scoresheet-navbar p-2 z-1">
-  <GIconBtn icon="arrowLeft" title="Back" variant="base-i4" onclick={goBack()} />
+  <GIconBtn
+    icon="arrowLeft"
+    title="Back"
+    variant="base-i4"
+    onclick={goBack()}
+  />
   <div class="flex-fill px-4">
     {#if dev}
       <NavbarDevOffcanvas />

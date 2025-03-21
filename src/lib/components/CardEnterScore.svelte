@@ -18,6 +18,7 @@
     bind:value={score}
     type="number"
     id="score-add-{uid}"
+    step="any"
   />
 </div>
 
