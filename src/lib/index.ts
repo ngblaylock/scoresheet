@@ -31,8 +31,8 @@ const getCompletedRoundsCount = () => {
 };
 
 type PlayerTotal = G.Player & {
-  total: number;
-  totalByRound: number[];
+  total: number | null;
+  totalByRound: (number | null)[];
 };
 
 const getTotals = (): PlayerTotal[] => {
@@ -40,18 +40,29 @@ const getTotals = (): PlayerTotal[] => {
     const game = getCurrentGame();
     if (game?.players) {
       const totals = game.players.map((player) => {
-        let total = 0;
-        let totalByRound: number[] = [];
+        let total: null | number = null;
+        let totalByRound: (number | null)[] = [];
         player.rounds.forEach((round) => {
           if (round) {
-            total += round;
+            total = (total ?? 0) + round;
           }
           const prevTotal = totalByRound[totalByRound.length - 1];
-          totalByRound.push((prevTotal ?? 0) + (round ?? 0));
+          totalByRound.push(round || prevTotal ? (prevTotal ?? 0) + (round ?? 0) : null);
         });
         return { ...player, total, totalByRound };
       });
-      return orderBy(totals, ['total'], [game.sortOrder]);
+      const playersWithNoScores = totals.filter((total) =>
+        total.rounds.every((score) => score === null),
+      );
+      const playersWithAtLeastOneScore = totals.filter(
+        (total) => !total.rounds.every((score) => score === null),
+      );
+      const orderedPlayersWithAtLeastOneScore = orderBy(
+        playersWithAtLeastOneScore,
+        ['total'],
+        [game.sortOrder],
+      );
+      return [...orderedPlayersWithAtLeastOneScore, ...playersWithNoScores];
     }
   }
   return [];
