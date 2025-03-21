@@ -1,11 +1,13 @@
 <script lang="ts">
   import 'nathanblaylock.com/styles';
   import Favicons from './Favicons.svelte';
+  import SeoMeta from './SeoMeta.svelte';
   import Navbar from './Navbar.svelte';
   import DeviceDetection from './DeviceDetection.svelte';
 </script>
 
 <Favicons />
+<SeoMeta />
 
 <div class="grid-bg"></div>
 <div class="outer-flex-container">
