@@ -43,11 +43,11 @@ const getTotals = (): PlayerTotal[] => {
         let total: null | number = null;
         let totalByRound: (number | null)[] = [];
         player.rounds.forEach((round) => {
-          if (round) {
+          if (round || round === 0) {
             total = (total ?? 0) + round;
           }
           const prevTotal = totalByRound[totalByRound.length - 1];
-          totalByRound.push(round || prevTotal ? (prevTotal ?? 0) + (round ?? 0) : null);
+          totalByRound.push(round !== null || prevTotal ? (prevTotal ?? 0) + (round ?? 0) : null);
         });
         return { ...player, total, totalByRound };
       });
@@ -56,7 +56,7 @@ const getTotals = (): PlayerTotal[] => {
       );
       const playersWithAtLeastOneScore = totals.filter(
         (total) => !total.rounds.every((score) => score === null),
-      );
+      );      
       const orderedPlayersWithAtLeastOneScore = orderBy(
         playersWithAtLeastOneScore,
         ['total'],

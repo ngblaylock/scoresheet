@@ -38,7 +38,7 @@
                 <small class="text-base-i4">{player.totalByRound[index]}</small>
               </td>
             {/each}
-            <td class="text-center"><strong>{player.total || '-'}</strong></td>
+            <td class="text-center"><strong>{player.total ?? '-'}</strong></td>
           </tr>
         {/each}
       </tbody>
