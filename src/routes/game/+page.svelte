@@ -31,8 +31,8 @@
   });
 
   let winnerDeterminateOptions = $state([
-    { label: 'Highest Score Wins', value: 'desc' },
     { label: 'Lowest Score Wins', value: 'asc' },
+    { label: 'Highest Score Wins', value: 'desc' },
   ]);
 
   let winnerDeterminate = $state(getCurrentGame()?.sortOrder);

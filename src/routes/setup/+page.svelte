@@ -7,15 +7,15 @@
   import MainContent from '$components/MainContent.svelte';
   import PlayersAddEdit from '$components/PlayersAddEdit.svelte';
 
-  let sortOrder = $state('desc');
+  let sortOrder = $state('asc');
   let winnerOptions = [
-    {
-      label: 'Highest Score Wins',
-      value: 'desc',
-    },
     {
       label: 'Lowest Score Wins',
       value: 'asc',
+    },
+    {
+      label: 'Highest Score Wins',
+      value: 'desc',
     },
   ];
 
