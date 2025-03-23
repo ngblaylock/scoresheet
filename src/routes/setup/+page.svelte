@@ -3,6 +3,7 @@
   import { chartColors, getCurrentGame, setCurrentGame } from '$lib';
   import { nanoid } from 'nanoid';
   import { page } from '$app/state';
+  import chroma from 'chroma-js';
 
   import MainContent from '$components/MainContent.svelte';
   import PlayersAddEdit from '$components/PlayersAddEdit.svelte';
@@ -43,7 +44,7 @@
           .map((p, index) => ({
             ...p,
             playerId: nanoid(),
-            chartColor: chartColors[index],
+            chartColor: chartColors[index] || `${chroma.random()}`,
             rounds: [],
           })),
         sortOrder: sortOrder as 'desc' | 'asc',

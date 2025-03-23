@@ -1,10 +1,10 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
   import { page } from '$app/state';
-  import { chartColors } from '$lib';
+  import { chartColors, setCurrentGame } from '$lib';
 
   async function setGame(game: G.Game) {
-    window.localStorage.setItem('currentGame', JSON.stringify(game));
+    setCurrentGame(game);
 
     if (page.route.id === '/game') {
       window.location.reload();
@@ -20,17 +20,29 @@
         {
           name: 'Brian',
           playerId: 'Vt9xZJ7LQw2yM8rB5pXNd',
-          chartColor: chartColors[0],
-          rounds: [48, 58, 6, 45, 45, 5, 15, 20, 78, 28, 48, -9, null, 9, 0],
+          chartColor: '#C22D2D',
+          rounds: [48, 58, 6, 0, 45, 5, 15, 20, 78, 28, -48, -9, null, 9, -10],
         },
         {
           name: 'Nathan',
           playerId: 'kP3fYzT6XqWJmNvB9R2LQ',
-          chartColor: chartColors[1],
-          rounds: [10, null, 0, 0, null, null, null, 78, 4, 28, 48, 9, 0, 0, 0],
+          chartColor: '#304BB5',
+          rounds: [10, null, 0, 0, -23, 34, 144, 78, 4, 28, 48, 9, 0, 0, 0],
+        },
+        {
+          name: 'Rachel',
+          playerId: 'M_9RcwhH2TeXbjAqnI_ct',
+          chartColor: '#E5DB21',
+          rounds: [90, 2, 23, 42, 1, -8, 23, -18, 122, 3, 33, 3, 23, -12, -19],
+        },
+        {
+          name: 'Natalie',
+          playerId: 'AY3PsiKfvh-H0qXskUgrt',
+          chartColor: '#31A033',
+          rounds: [23, 3, 5, -90, 80, 12, 4, 23, 90, 3, 80, 23, 2, 1, 2],
         },
       ],
-      sortOrder: 'desc' as const,
+      sortOrder: 'asc' as const,
     };
     setGame(game);
   }
