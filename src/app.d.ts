@@ -13,6 +13,7 @@ declare global {
     interface Player {
       name: string;
       playerId: string;
+      chartColor: string;
       rounds: Round[];
     }
     interface Game {

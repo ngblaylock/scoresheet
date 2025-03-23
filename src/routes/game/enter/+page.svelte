@@ -1,16 +1,17 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
-    import CardEnterScore from '$components/CardEnterScore.svelte';
-  import MainContent from '$components/MainContent.svelte';
-  import { getCurrentGame, getCurrentRound, getPlayers, setCurrentGame } from '$lib';
   import { onMount } from 'svelte';
+  import { getCurrentGame, getCurrentRound, getPlayers, setCurrentGame } from '$lib';
+  
+  import CardEnterScore from '$components/CardEnterScore.svelte';
+  import MainContent from '$components/MainContent.svelte';
 
   let round: number = $state(0);
   let players: { name: string; score: number | null }[] = $state([]);
 
   onMount(() => {
     round = getCurrentRound() || 1;
-    const tempPlayers = getPlayers();    
+    const tempPlayers = getPlayers();
     if (!tempPlayers) {
       goto('/game');
     } else {
@@ -45,7 +46,10 @@
 
         <div class="vstack">
           {#each players as player, index}
-            <CardEnterScore label={player.name} bind:score={player.score} />
+            <CardEnterScore
+              label={player.name}
+              bind:score={player.score}
+            />
           {/each}
         </div>
       </div>

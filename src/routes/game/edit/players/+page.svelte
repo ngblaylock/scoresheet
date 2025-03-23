@@ -1,7 +1,7 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
   import MainContent from '$components/MainContent.svelte';
-  import { getCurrentGame, getCompletedRoundsCount, setCurrentGame } from '$lib';
+  import { getCurrentGame, getCompletedRoundsCount, setCurrentGame, chartColors } from '$lib';
   import { nanoid } from 'nanoid';
   import { onMount } from 'svelte';
   import PlayersAddEdit from '$components/PlayersAddEdit.svelte';
@@ -30,18 +30,20 @@
     } else {
       if (currentGame) {
         let newPlayers: G.Player[] = [];
-        players.forEach((player) => {
+        players.forEach((player, index) => {
           const foundPlayer = currentGame?.players.find((p) => p.playerId === player.playerId);
           if (foundPlayer) {
             newPlayers.push({
               name: player.name,
               playerId: foundPlayer.playerId,
+              chartColor: chartColors[index],
               rounds: foundPlayer.rounds,
             });
           } else {
             newPlayers.push({
               name: player.name,
               playerId: nanoid(),
+              chartColor: chartColors[index],
               rounds: Array(getCompletedRoundsCount()).fill(null),
             });
           }

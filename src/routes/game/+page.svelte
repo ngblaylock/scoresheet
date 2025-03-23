@@ -89,7 +89,7 @@
     {#if view === 'table'}
       <ScoresTable {gameTotals} />
     {:else}
-      <ScoresChart />
+      <ScoresChart {gameTotals} />
     {/if}
     <div class="hstack gap-5 justify-content-center font-cursive mt-4 text-base-i4">
       <div>Min: {minMaxAvg?.min}</div>

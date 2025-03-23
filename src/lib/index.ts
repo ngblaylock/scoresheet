@@ -56,7 +56,7 @@ const getTotals = (): PlayerTotal[] => {
       );
       const playersWithAtLeastOneScore = totals.filter(
         (total) => !total.rounds.every((score) => score === null),
-      );      
+      );
       const orderedPlayersWithAtLeastOneScore = orderBy(
         playersWithAtLeastOneScore,
         ['total'],
@@ -91,6 +91,36 @@ const getPlayers = () => {
   }
 };
 
+const chartColors = [
+  // Medium Colors
+  '#C22D2D',
+  '#304BB5',
+  '#E5DB21',
+  '#31A033',
+  '#E47028',
+  '#7A34C1',
+  '#2B9DB1',
+  '#C92CAD',
+  // Dark Colors
+  '#680909',
+  '#14297B',
+  '#B3AA0B',
+  '#116C12',
+  '#A84A10',
+  '#52188D',
+  '#157687',
+  '#930F7B',
+  // Light Colors
+  '#F08484',
+  '#778AD4',
+  '#F1EC96',
+  '#91CC92',
+  '#F5A877',
+  '#AA71E4',
+  '#67C8D9',
+  '#DC6EC8',
+];
+
 export {
   getCurrentGame,
   setCurrentGame,
@@ -99,4 +129,5 @@ export {
   getTotals,
   getMinMaxAvg,
   getPlayers,
+  chartColors,
 };

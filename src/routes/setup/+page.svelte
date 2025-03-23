@@ -1,6 +1,6 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
-  import { getCurrentGame, setCurrentGame } from '$lib';
+  import { chartColors, getCurrentGame, setCurrentGame } from '$lib';
   import { nanoid } from 'nanoid';
   import { page } from '$app/state';
 
@@ -20,16 +20,16 @@
   ];
 
   let players = $state([{ name: '' }]);
-  
+
   $effect(() => {
     const restart = page.url.searchParams.get('restart');
     if (restart === 'true') {
       const currentGame = getCurrentGame();
-      if(currentGame?.players.length){
-        players = currentGame.players.map(p => ({name: p.name}))
-      }      
+      if (currentGame?.players.length) {
+        players = currentGame.players.map((p) => ({ name: p.name }));
+      }
     }
-  })
+  });
 
   let addPlayerForm: HTMLFormElement | undefined = $state();
   function createGame() {
@@ -40,9 +40,10 @@
         id: Date.now(),
         players: players
           .filter((p) => p.name)
-          .map((p) => ({
+          .map((p, index) => ({
             ...p,
             playerId: nanoid(),
+            chartColor: chartColors[index],
             rounds: [],
           })),
         sortOrder: sortOrder as 'desc' | 'asc',
