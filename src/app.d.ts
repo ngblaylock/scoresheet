@@ -19,6 +19,7 @@ declare global {
     interface Game {
       id: number;
       players: Player[];
+      preferredView: 'table' | 'chart';
       sortOrder: 'asc' | 'desc';
     }
   }

@@ -42,6 +42,7 @@
           rounds: [23, 3, 5, -90, 80, 12, 4, 23, 90, 3, 80, 23, 2, 1, 2],
         },
       ],
+      preferredView: 'table' as const,
       sortOrder: 'asc' as const,
     };
     setGame(game);
@@ -54,27 +55,28 @@
           name: 'George',
           playerId: 'M5pXNdVt9xZJ7LQw2yM8r',
           chartColor: chartColors[0],
-          rounds: [412, 58, -8],
+          rounds: [42, 58, -8, 5, 1],
         },
         {
           name: 'Abraham',
           playerId: 'YzT6XqWJmNvB9R2LQkP3f',
           chartColor: chartColors[1],
-          rounds: [10, null, 0],
+          rounds: [10, null, 0, 12, 1],
         },
         {
           name: 'James',
           playerId: 'XNdVt9xZJ7LQw2yM8rP3f',
           chartColor: chartColors[2],
-          rounds: [78, 13, 8],
+          rounds: [78, 13, 8, 56, 0],
         },
         {
           name: 'Thomas',
           playerId: 'qWJmNvB9R2LQkP3fYzT6X',
           chartColor: chartColors[3],
-          rounds: [null, null, 4],
+          rounds: [null, null, 4, 8, 48],
         },
       ],
+      preferredView: 'chart' as const,
       sortOrder: 'asc' as const,
     };
     setGame(game);

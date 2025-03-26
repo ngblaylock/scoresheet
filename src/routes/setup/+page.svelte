@@ -47,6 +47,7 @@
             chartColor: chartColors[index] || `${chroma.random()}`,
             rounds: [],
           })),
+        preferredView: 'table',
         sortOrder: sortOrder as 'desc' | 'asc',
       };
       setCurrentGame(game);
