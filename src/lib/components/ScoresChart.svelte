@@ -16,10 +16,14 @@
         data: $state.snapshot(playerData.totalByRound),
         borderColor: playerData.chartColor,
         backgroundColor: playerData.chartColor,
+        borderWidth: 2.5,
+        pointRadius: 2,
       };
     });
     let chart: undefined | Chart;
     if (canvas) {
+      Chart.defaults.font.family = 'Urbanist';
+      Chart.defaults.font.size = 14;
       chart = new Chart(canvas, {
         type: 'line',
         data: {
@@ -27,23 +31,32 @@
           datasets,
         },
         options: {
-          responsive: true, // for auto sizing
-          maintainAspectRatio: false, // allows custom height
+          responsive: true,
+          maintainAspectRatio: false,
           plugins: {
             legend: {
               position: 'bottom',
               labels: {
-                color: '#333',
                 font: {
-                  size: 16,
-                  family: 'Helvetica',
-                  style: 'italic',
+                  family: '"Patrick Hand", "Urbanist"',
+                  size: 18,
                 },
-                boxWidth: 20,
-                boxHeight: 0,
-                padding: 20,
+                color: '#4e4e51',
+                boxWidth: 4,
+                boxHeight: 6,
+                padding: 24,
+                usePointStyle: true,
               },
             },
+            tooltip:{
+              usePointStyle: true,
+              boxPadding: 4,
+              callbacks: {
+                title: function(context) {
+                  return `Round ${context[0].label}`;
+                }
+              }
+            }
           },
         },
       });
