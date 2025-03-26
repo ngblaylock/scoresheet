@@ -1,9 +1,11 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
-  import MainContent from '$components/MainContent.svelte';
-  import { getCurrentGame, getCompletedRoundsCount, setCurrentGame } from '$lib';
+  import { getCurrentGame, getCompletedRoundsCount, setCurrentGame, chartColors } from '$lib';
   import { nanoid } from 'nanoid';
   import { onMount } from 'svelte';
+  import chroma from 'chroma-js';
+
+  import MainContent from '$components/MainContent.svelte';
   import PlayersAddEdit from '$components/PlayersAddEdit.svelte';
 
   let players: { name: string; playerId: string }[] = $state([]);
@@ -30,18 +32,20 @@
     } else {
       if (currentGame) {
         let newPlayers: G.Player[] = [];
-        players.forEach((player) => {
+        players.forEach((player, index) => {
           const foundPlayer = currentGame?.players.find((p) => p.playerId === player.playerId);
           if (foundPlayer) {
             newPlayers.push({
               name: player.name,
               playerId: foundPlayer.playerId,
+              chartColor: chartColors[index] || `${chroma.random()}`,
               rounds: foundPlayer.rounds,
             });
           } else {
             newPlayers.push({
               name: player.name,
               playerId: nanoid(),
+              chartColor: chartColors[index] || `${chroma.random()}`,
               rounds: Array(getCompletedRoundsCount()).fill(null),
             });
           }

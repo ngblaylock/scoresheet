@@ -13,11 +13,13 @@ declare global {
     interface Player {
       name: string;
       playerId: string;
+      chartColor: string;
       rounds: Round[];
     }
     interface Game {
       id: number;
       players: Player[];
+      preferredView: 'table' | 'chart';
       sortOrder: 'asc' | 'desc';
     }
   }

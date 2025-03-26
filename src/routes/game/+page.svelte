@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { IconName } from 'nathanblaylock.com/icons';
-  import { getCurrentGame, getTotals, getMinMaxAvg, setCurrentGame } from '$lib';
+  import { getCurrentGame, getTotals, getMinMaxAvg, setCurrentGame, getPreferredView, setPreferredView } from '$lib';
   import { goto } from '$app/navigation';
   import { onMount } from 'svelte';
 
@@ -16,11 +16,11 @@
     },
     {
       label: 'Graph View',
-      value: 'graph',
+      value: 'chart',
       icon: 'chartLine',
     },
   ]);
-  let view = $state(scItems[0].value);
+  let view = $state(getPreferredView());
 
   let game = $state(getCurrentGame());
   let gameTotals = $state(getTotals());
@@ -89,7 +89,7 @@
     {#if view === 'table'}
       <ScoresTable {gameTotals} />
     {:else}
-      <ScoresChart />
+      <ScoresChart {gameTotals} />
     {/if}
     <div class="hstack gap-5 justify-content-center font-cursive mt-4 text-base-i4">
       <div>Min: {minMaxAvg?.min}</div>
@@ -103,6 +103,7 @@
         <GSegmentedControl
           items={scItems}
           bind:group={view}
+          onchange={setPreferredView(view)}
         />
       </div>
       <div class="hstack justify-content-center">

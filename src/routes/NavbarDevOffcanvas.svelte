@@ -1,9 +1,10 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
   import { page } from '$app/state';
+  import { chartColors, setCurrentGame } from '$lib';
 
   async function setGame(game: G.Game) {
-    window.localStorage.setItem('currentGame', JSON.stringify(game));
+    setCurrentGame(game);
 
     if (page.route.id === '/game') {
       window.location.reload();
@@ -19,15 +20,30 @@
         {
           name: 'Brian',
           playerId: 'Vt9xZJ7LQw2yM8rB5pXNd',
-          rounds: [48, 58, 6, 45, 45, 5, 15, 20, 78, 28, 48, -9, null, 9, 0],
+          chartColor: chartColors[0],
+          rounds: [48, 58, 6, 0, 45, 5, 15, 20, 78, 28, -48, -9, null, 9, -10],
         },
         {
           name: 'Nathan',
           playerId: 'kP3fYzT6XqWJmNvB9R2LQ',
-          rounds: [10, null, 0, 0, null, null, null, 78, 4, 28, 48, 9, 0, 0, 0],
+          chartColor: chartColors[1],
+          rounds: [10, null, 0, 0, -23, 34, 144, 78, 4, 28, 48, 9, 0, 0, 0],
+        },
+        {
+          name: 'Rachel',
+          playerId: 'M_9RcwhH2TeXbjAqnI_ct',
+          chartColor: chartColors[2],
+          rounds: [90, 2, 23, 42, 1, -8, 23, -18, 122, 3, 33, 3, 23, -12, -19],
+        },
+        {
+          name: 'Natalie',
+          playerId: 'AY3PsiKfvh-H0qXskUgrt',
+          chartColor: chartColors[3],
+          rounds: [23, 3, 5, -90, 80, 12, 4, 23, 90, 3, 80, 23, 2, 1, 2],
         },
       ],
-      sortOrder: 'desc' as const,
+      preferredView: 'table' as const,
+      sortOrder: 'asc' as const,
     };
     setGame(game);
   }
@@ -38,24 +54,29 @@
         {
           name: 'George',
           playerId: 'M5pXNdVt9xZJ7LQw2yM8r',
-          rounds: [412, 58, -8],
+          chartColor: chartColors[0],
+          rounds: [42, 58, -8, 5, 1],
         },
         {
           name: 'Abraham',
           playerId: 'YzT6XqWJmNvB9R2LQkP3f',
-          rounds: [10, null, 0],
+          chartColor: chartColors[1],
+          rounds: [10, null, 0, 12, 1],
         },
         {
           name: 'James',
           playerId: 'XNdVt9xZJ7LQw2yM8rP3f',
-          rounds: [78, 13, 8],
+          chartColor: chartColors[2],
+          rounds: [78, 13, 8, 56, 0],
         },
         {
           name: 'Thomas',
           playerId: 'qWJmNvB9R2LQkP3fYzT6X',
-          rounds: [null, null, 4],
+          chartColor: chartColors[3],
+          rounds: [null, null, 4, 8, 48],
         },
       ],
+      preferredView: 'chart' as const,
       sortOrder: 'asc' as const,
     };
     setGame(game);
@@ -107,6 +128,7 @@
       href="https://github.com/ngblaylock/scoresheet/projects?query=is%3Aopen"
       target="_blank"
       variant="light"
+      iconLeft="gitHub"
     >
       GitHub Project
     </GBtn>
