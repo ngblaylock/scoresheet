@@ -1,5 +1,5 @@
 import { browser } from '$app/environment';
-import { max, mean, min, orderBy } from 'lodash-es';
+import { orderBy } from 'lodash-es';
 
 const getCurrentGame = () => {
   if (browser) {
@@ -68,21 +68,6 @@ const getTotals = (): PlayerTotal[] => {
   return [];
 };
 
-const getMinMaxAvg = () => {
-  if (browser) {
-    const totals = getTotals();
-    if (!totals) return;
-    const totalScoresOnly = totals
-      .map((total) => total.total)
-      .filter((val) => typeof val === 'number');
-    return {
-      min: min(totalScoresOnly),
-      max: max(totalScoresOnly),
-      avg: Number(mean(totalScoresOnly).toFixed(2)),
-    };
-  }
-};
-
 const getPreferredView = () => {
   if (browser) {
     const currentGame = getCurrentGame();
@@ -136,7 +121,6 @@ export {
   getCurrentRound,
   getCompletedRoundsCount,
   getTotals,
-  getMinMaxAvg,
   getPreferredView,
   setPreferredView,
   getPlayers,
