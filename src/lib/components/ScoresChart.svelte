@@ -7,9 +7,48 @@
 
   let canvas: HTMLCanvasElement | undefined = $state();
 
-  onMount(() => {});
+  let theme = $state('light');
+
+  onMount(() => {
+    // This is a way to WATCH the theme in the DOM to update the chart style
+    const targetNode = document.documentElement;
+
+    function handleThemeChange() {
+      const newTheme = targetNode.getAttribute('data-bs-theme') || 'light';
+      theme = newTheme;
+    }
+
+    const observer = new MutationObserver(() => {
+      handleThemeChange();
+    });
+
+    observer.observe(targetNode, {
+      attributes: true,
+      attributeFilter: ['data-bs-theme'],
+    });
+
+    handleThemeChange();
+
+    return () => {
+      observer.disconnect();
+    };
+  });
 
   $effect(() => {
+    console.log(theme);
+    const colors =
+      theme === 'light'
+        ? {
+            border: 'rgba(0, 0, 0, 0.1)',
+            labelText: 'rgba(0, 0, 0, 0.8)',
+            legendText: 'rgba(0, 0, 0, 1',
+          }
+        : {
+            border: 'rgba(255, 255, 255, 0.1)',
+            labelText: 'rgba(255, 255, 255, 0.8)',
+            legendText: 'rgba(255, 255, 255, 1)',
+          };
+
     const datasets = gameTotals.map((playerData) => {
       return {
         label: playerData.name,
@@ -41,22 +80,40 @@
                   family: '"Patrick Hand", "Urbanist"',
                   size: 18,
                 },
-                color: '#4e4e51',
+                color: colors.legendText,
                 boxWidth: 4,
                 boxHeight: 6,
                 padding: 24,
                 usePointStyle: true,
               },
             },
-            tooltip:{
+            tooltip: {
               usePointStyle: true,
               boxPadding: 4,
               callbacks: {
-                title: function(context) {
+                title: function (context) {
                   return `Round ${context[0].label}`;
-                }
-              }
-            }
+                },
+              },
+            },
+          },
+          scales: {
+            x: {
+              grid: {
+                color: colors.border,
+              },
+              ticks: {
+                color: colors.labelText,
+              },
+            },
+            y: {
+              grid: {
+                color: colors.border,
+              },
+              ticks: {
+                color: colors.labelText,
+              },
+            },
           },
         },
       });
@@ -70,7 +127,7 @@
 </script>
 
 <div class="card bg-white border-base-4">
-  <div class="card-body">
+  <div class="card-body bg-base-1">
     <canvas
       bind:this={canvas}
       height="380"
