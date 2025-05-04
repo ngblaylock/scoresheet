@@ -44,6 +44,8 @@
             variant="base-i4"
             title="Remove"
             type="button"
+            disabled={players.length < 2}
+            class={players.length < 2 ? 'opacity-0' : ''}
             onclick={async () => {
               players.splice(index, 1);
               await tick;
