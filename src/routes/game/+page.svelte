@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { IconName } from 'nathanblaylock.com/icons';
-  import { getCurrentGame, getTotals, getMinMaxAvg, setCurrentGame, getPreferredView, setPreferredView } from '$lib';
+  import { getCurrentGame, getTotals, setCurrentGame, getPreferredView, setPreferredView } from '$lib';
   import { goto } from '$app/navigation';
   import { onMount } from 'svelte';
 
@@ -24,7 +24,6 @@
 
   let game = $state(getCurrentGame());
   let gameTotals = $state(getTotals());
-  let minMaxAvg = $state(getMinMaxAvg());
 
   onMount(() => {
     if (!game) goto('/');
@@ -91,11 +90,6 @@
     {:else}
       <ScoresChart {gameTotals} />
     {/if}
-    <div class="hstack gap-5 justify-content-center font-cursive mt-4 text-base-i4">
-      <div>Min: {minMaxAvg?.min}</div>
-      <div>Max: {minMaxAvg?.max}</div>
-      <div>Avg: {minMaxAvg?.avg}</div>
-    </div>
   </div>
   {#snippet actions()}
     <div class="container">
