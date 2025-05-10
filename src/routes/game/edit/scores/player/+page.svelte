@@ -48,10 +48,15 @@
       <h2 class="font-cursive text-center">{name}</h2>
       <div class="vstack">
         {#each rounds as round, index}
-          <CardEnterScore
-            label="Round {index + 1}"
-            bind:score={rounds[index]}
-          />
+          <div
+            class="animate__animated animate__fadeIn animate__delay-1s"
+            style="--animate-delay: {index * 100}ms"
+          >
+            <CardEnterScore
+              label="Round {index + 1}"
+              bind:score={rounds[index]}
+            />
+          </div>
         {/each}
       </div>
     </div>

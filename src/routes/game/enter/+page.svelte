@@ -45,10 +45,12 @@
 
         <div class="vstack">
           {#each players as player, index}
-            <CardEnterScore
-              label={player.name}
-              bind:score={player.score}
-            />
+            <div class="animate__animated animate__fadeIn animate__delay-1s" style="--animate-delay: {index * 100}ms">
+              <CardEnterScore
+                label={player.name}
+                bind:score={player.score}
+              />
+            </div>
           {/each}
         </div>
       </div>

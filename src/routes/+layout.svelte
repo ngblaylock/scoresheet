@@ -4,6 +4,7 @@
   import SeoMeta from './SeoMeta.svelte';
   import Navbar from './Navbar.svelte';
   import DeviceDetection from './DeviceDetection.svelte';
+  import 'animate.css';
 </script>
 
 <Favicons />

@@ -13,7 +13,7 @@
     if (!currentGame) goto('/game');
     players = getPlayers() || [];
     const completedRounds = getCompletedRoundsCount() || 0;
-    
+
     for (let x = 1; x <= completedRounds; x++) {
       rounds.push(x);
     }
@@ -26,29 +26,38 @@
 
     <h2 class="font-cursive text-center mt-4">By Player</h2>
     <div class="vstack">
-      {#each players as player}
-        <GBtn
-          href="/game/edit/scores/player?name={player}"
-          variant="base-2"
-          iconRight="arrowRight"
-          class="w-100 justify-content-between"
+      {#each players as player, index}
+        <div
+          class="animate__animated animate__fadeIn animate__delay-1s"
+          style="--animate-delay: {index * 100}ms"
         >
-          {player}
-        </GBtn>
-      {/each}
-    </div>
-    
-    <h2 class="font-cursive text-center mt-4">By Round</h2>
-    <div class="vstack">
-      {#each rounds as round}
-        <GBtn
-          href="/game/edit/scores/round?round={round}"
-          variant="base-2"
-          iconRight="arrowRight"
-          class="w-100 justify-content-between">Round {round}</GBtn
-        >
+          <GBtn
+            href="/game/edit/scores/player?name={player}"
+            variant="base-2"
+            iconRight="arrowRight"
+            class="w-100 justify-content-between"
+          >
+            {player}
+          </GBtn>
+        </div>
       {/each}
     </div>
 
+    <h2 class="font-cursive text-center mt-4">By Round</h2>
+    <div class="vstack">
+      {#each rounds as round, index}
+        <div
+          class="animate__animated animate__fadeIn animate__delay-1s"
+          style="--animate-delay: {index * 100}ms"
+        >
+          <GBtn
+            href="/game/edit/scores/round?round={round}"
+            variant="base-2"
+            iconRight="arrowRight"
+            class="w-100 justify-content-between">Round {round}</GBtn
+          >
+        </div>
+      {/each}
+    </div>
   </div>
 </MainContent>
