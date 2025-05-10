@@ -2,7 +2,6 @@
   import { goto } from '$app/navigation';
   import { onMount } from 'svelte';
   import { getCurrentGame, getCurrentRound, getPlayers, setCurrentGame } from '$lib';
-  
   import CardEnterScore from '$components/CardEnterScore.svelte';
   import MainContent from '$components/MainContent.svelte';
 
@@ -19,7 +18,7 @@
     }
   });
 
-  function completeRound(e: Event) {
+  function completeRound(e: Event, gotoRoute: string = '/game') {
     e.preventDefault();
     const currentGame = getCurrentGame();
     if (currentGame) {
@@ -31,7 +30,7 @@
       });
       setCurrentGame(currentGame);
     }
-    goto('/game');
+    goto(gotoRoute);
   }
 </script>
 
@@ -59,12 +58,16 @@
         <div class="hstack justify-content-center">
           <GBtn
             type="submit"
-            form="add-form">Complete Round {round}</GBtn
+            form="add-form"
           >
+            Complete Round {round}
+          </GBtn>
           <GBtn
-            href="/game/final"
-            variant="base-2">End Game</GBtn
+            onclick={(e: Event) => completeRound(e, '/game/final')}
+            variant="base-2"
           >
+            End Game
+          </GBtn>
         </div>
       </div>
     {/snippet}
