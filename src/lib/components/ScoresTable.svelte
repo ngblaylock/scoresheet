@@ -15,7 +15,7 @@
 
 {#if gameTotals?.length}
   <div
-    class="table-responsive"
+    class="table-responsive animate__animated animate__fadeIn"
     bind:this={tableContainer}
   >
     <table class="table table-striped font-cursive">

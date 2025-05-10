@@ -40,11 +40,13 @@
       <h1 class="font-cursive text-center">Edit Scores</h1>
       <h2 class="font-cursive text-center">{round}</h2>
       <div class="vstack">
-        {#each players as player}
-          <CardEnterScore
-            label={player.name}
-            bind:score={player.rounds[round - 1]}
-          />
+        {#each players as player, index}
+          <div class="animate__animated animate__fadeIn animate__delay-1s" style="--animate-delay: {index * 100}ms">
+            <CardEnterScore
+              label={player.name}
+              bind:score={player.rounds[round - 1]}
+            />
+          </div>
         {/each}
       </div>
     </div>
