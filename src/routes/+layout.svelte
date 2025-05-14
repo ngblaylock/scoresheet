@@ -1,10 +1,23 @@
 <script lang="ts">
+  import { onNavigate } from '$app/navigation';
   import 'nathanblaylock.com/styles';
+  import 'animate.css';
+
   import Favicons from './Favicons.svelte';
   import SeoMeta from './SeoMeta.svelte';
   import Navbar from './Navbar.svelte';
   import DeviceDetection from './DeviceDetection.svelte';
-  import 'animate.css';
+
+  onNavigate((navigation) => {
+    if (!document.startViewTransition) return;
+
+    return new Promise((resolve) => {
+      document.startViewTransition(async () => {
+        resolve();
+        await navigation.complete;
+      });
+    });
+  });
 </script>
 
 <Favicons />
