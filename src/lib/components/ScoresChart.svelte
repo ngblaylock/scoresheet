@@ -35,7 +35,6 @@
   });
 
   $effect(() => {
-    console.log(theme);
     const colors =
       theme === 'light'
         ? {
