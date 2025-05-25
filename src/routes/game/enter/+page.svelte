@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { nanoid } from 'nanoid';
   import { goto } from '$app/navigation';
   import { onMount } from 'svelte';
   import { getCurrentGame, getCurrentRound, getPlayers, setCurrentGame } from '$lib';
@@ -26,6 +27,8 @@
         const foundPlayer = currentGame.players.find((cgp) => cgp.name === player.name);
         if (foundPlayer) {
           foundPlayer.rounds.push(player.score);
+          // Change up the player ID to randomize tie breakers after each round.
+          foundPlayer.playerId = nanoid();
         }
       });
       setCurrentGame(currentGame);
@@ -45,7 +48,10 @@
 
         <div class="vstack">
           {#each players as player, index}
-            <div class="animate__animated animate__fadeIn animate__delay-1s" style="--animate-delay: {index * 100}ms">
+            <div
+              class="animate__animated animate__fadeIn animate__delay-1s"
+              style="--animate-delay: {index * 100}ms"
+            >
               <CardEnterScore
                 label={player.name}
                 bind:score={player.score}

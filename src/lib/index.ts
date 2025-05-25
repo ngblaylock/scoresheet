@@ -8,8 +8,8 @@ const getCurrentGame = () => {
   }
 };
 
-const setCurrentGame = (game: G.Game) => {
-  if (browser) {
+const setCurrentGame = (game: G.Game) => {  
+  if (browser) {  
     window.localStorage.setItem('currentGame', JSON.stringify(game));
   }
 };
@@ -57,10 +57,11 @@ const getTotals = (): PlayerTotal[] => {
       const playersWithAtLeastOneScore = totals.filter(
         (total) => !total.rounds.every((score) => score === null),
       );
+      // Order secondarily by playerId to randomize tie-breakers. The playerId is changed after every round.
       const orderedPlayersWithAtLeastOneScore = orderBy(
         playersWithAtLeastOneScore,
-        ['total'],
-        [game.sortOrder],
+        ['total', 'playerId'],
+        [game.sortOrder, 'asc'],
       );
       return [...orderedPlayersWithAtLeastOneScore, ...playersWithNoScores];
     }
