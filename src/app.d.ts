@@ -23,6 +23,7 @@ declare global {
       sortOrder: 'asc' | 'desc';
     }
   }
+  const __APP_VERSION__: string; // Version of the app, set in vite.config.ts
 }
 
 export {};

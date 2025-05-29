@@ -3,30 +3,29 @@ import { browser } from '$app/environment';
 import { orderBy } from 'lodash-es';
 
 export const getDeviceInfo = () => {
-  if(browser){
-
+  if (browser) {
     const parser = Bowser.getParser(window.navigator.userAgent);
     const browser = parser.getBrowser();
     const os = parser.getOS();
     const platform = parser.getPlatform();
-    
+
     const isTouch = 'ontouchstart' in window;
-    
+
     const isIOS = os.name === 'iOS';
     const isAndroid = os.name === 'Android';
     const isSafari = browser.name === 'Safari';
     const isChrome = browser.name === 'Chrome';
     const isFirefox = browser.name === 'Firefox';
-    
+
     // iPadOS often identifies as macOS but has touch
     const isIPadOSSafari = os.name === 'macOS' && isSafari && isTouch;
     const isIOSSafari = (isIOS && isSafari) || isIPadOSSafari;
-    
+
     // Detect PWA (standalone mode)
     const isPWA =
-    window.matchMedia('(display-mode: standalone)').matches ||
-    (window.navigator as any).standalone === true; // iOS Safari only
-    
+      window.matchMedia('(display-mode: standalone)').matches ||
+      (window.navigator as any).standalone === true; // iOS Safari only
+
     return {
       isIOS,
       isAndroid,
@@ -42,7 +41,7 @@ export const getDeviceInfo = () => {
       browserName: browser.name,
     };
   }
-}
+};
 
 export const getCurrentGame = () => {
   if (browser) {
@@ -51,8 +50,8 @@ export const getCurrentGame = () => {
   }
 };
 
-export const setCurrentGame = (game: G.Game) => {  
-  if (browser) {  
+export const setCurrentGame = (game: G.Game) => {
+  if (browser) {
     window.localStorage.setItem('currentGame', JSON.stringify(game));
   }
 };
@@ -69,6 +68,7 @@ export const getCompletedRoundsCount = () => {
   if (browser) {
     const game = window.localStorage.getItem('currentGame') || '{}';
     const currentGame: G.Game = JSON.parse(game);
+    if (!currentGame.id) return;
     return currentGame.players[0].rounds.length;
   }
 };
@@ -117,17 +117,17 @@ export const getPreferredView = () => {
     const currentGame = getCurrentGame();
     return currentGame?.preferredView;
   }
-}
+};
 
 export const setPreferredView = (view: string | undefined) => {
-  if(browser){
+  if (browser) {
     const currentGame = getCurrentGame();
     if (currentGame && ['table', 'chart'].includes(`${view}`)) {
       currentGame.preferredView = view as 'table' | 'chart';
       setCurrentGame(currentGame);
     }
   }
-}
+};
 
 export const getPlayers = () => {
   if (browser) {
