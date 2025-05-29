@@ -6,6 +6,7 @@
   import Favicons from './Favicons.svelte';
   import SeoMeta from './SeoMeta.svelte';
   import Navbar from './Navbar.svelte';
+  import Analytics from './Analytics.svelte';
   import { getDeviceInfo } from '$lib';
 
   let { children } = $props();
@@ -24,6 +25,7 @@
   let deviceInfo = $state(getDeviceInfo());
 </script>
 
+<Analytics />
 <Favicons />
 <SeoMeta />
 
