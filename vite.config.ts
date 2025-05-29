@@ -29,6 +29,9 @@ export default defineConfig({
     }),
     sveltekit()
   ],
+  define: {
+    __APP_VERSION__: JSON.stringify(process.env.npm_package_version || 'unknown'),
+  },
   css: {
     preprocessorOptions: {
       scss: {

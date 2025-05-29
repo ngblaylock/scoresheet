@@ -29,6 +29,8 @@
       if (currentGame?.players.length) {
         players = currentGame.players.map((p) => ({ name: p.name }));
       }
+    } else {
+      players = [{ name: '' }];
     }
   });
 

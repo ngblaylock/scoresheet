@@ -55,7 +55,7 @@
     <li>
       <a
         class={linkClass}
-        href="/"
+        href="/setup/"
       >
         New Game
       </a>
