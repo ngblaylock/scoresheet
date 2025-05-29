@@ -2,6 +2,10 @@ import Bowser from 'bowser';
 import { browser } from '$app/environment';
 import { orderBy } from 'lodash-es';
 
+/**
+ * Gets device information including OS, browser, and platform details.
+ * @returns Device information including OS, browser, and platform details. Only available in browser environment.
+ */
 export const getDeviceInfo = () => {
   if (browser) {
     const parser = Bowser.getParser(window.navigator.userAgent);
@@ -43,6 +47,10 @@ export const getDeviceInfo = () => {
   }
 };
 
+/**
+ * Gets current game data.
+ * @returns Current game from localStorage, or undefined if not found. Only works in browser environment.
+ */
 export const getCurrentGame = () => {
   if (browser) {
     const game = window.localStorage.getItem('currentGame');
@@ -50,12 +58,20 @@ export const getCurrentGame = () => {
   }
 };
 
+/**
+ * Saves the current game data to localStorage.
+ * @param game - The game object to set as the current game in localStorage.
+ */
 export const setCurrentGame = (game: G.Game) => {
   if (browser) {
     window.localStorage.setItem('currentGame', JSON.stringify(game));
   }
 };
 
+/**
+ * Gets the current round number for the game for entering scores. This is different from getCompletedRoundsCount, which returns the number of rounds where data has been entered.
+ * @returns The most recent round number for the current game, or undefined if no game is found. Only works in browser environment.
+ */
 export const getCurrentRound = () => {
   if (browser) {
     const currentGame = getCurrentGame();
@@ -64,11 +80,14 @@ export const getCurrentRound = () => {
   }
 };
 
+/**
+ * The number of completed rounds in the current game. This is is different from getCurrentRound, which returns the next round to enter scores.
+ * @returns The number of completed rounds in the current game, or undefined if no game is found. Only works in browser environment.
+ */
 export const getCompletedRoundsCount = () => {
   if (browser) {
-    const game = window.localStorage.getItem('currentGame') || '{}';
-    const currentGame: G.Game = JSON.parse(game);
-    if (!currentGame.id) return;
+    const currentGame = getCurrentGame();
+    if (!currentGame) return;
     return currentGame.players[0].rounds.length;
   }
 };
@@ -77,7 +96,10 @@ type PlayerTotal = G.Player & {
   total: number | null;
   totalByRound: (number | null)[];
 };
-
+/**
+ * Gets totals for each player in teh current game.
+ * @returns An array of player totals, including total scores and scores by round, ordered by total score and player ID. Only works in browser environment.
+ */
 export const getTotals = (): PlayerTotal[] => {
   if (browser) {
     const game = getCurrentGame();
@@ -112,6 +134,10 @@ export const getTotals = (): PlayerTotal[] => {
   return [];
 };
 
+/**
+ * Gets the preferred view for the current game. Should be either 'table' or 'chart'.
+ * @returns The current game preferred view, or undefined if no game is found. Only works in browser environment.
+ */
 export const getPreferredView = () => {
   if (browser) {
     const currentGame = getCurrentGame();
@@ -119,6 +145,10 @@ export const getPreferredView = () => {
   }
 };
 
+/**
+ * Sets the preferred view for the current game in localStorage.
+ * @param view - The view to set as the preferred view for the current game. Should be either 'table' or 'chart'.
+ */
 export const setPreferredView = (view: string | undefined) => {
   if (browser) {
     const currentGame = getCurrentGame();
@@ -129,6 +159,10 @@ export const setPreferredView = (view: string | undefined) => {
   }
 };
 
+/**
+ * Gets just the player names from the current game.
+ * @returns An array of player names in the current game, or undefined if no game is found. Only works in browser environment.
+ */
 export const getPlayers = () => {
   if (browser) {
     const currentGame = getCurrentGame();
@@ -137,6 +171,9 @@ export const getPlayers = () => {
   }
 };
 
+/**
+ * The default chart colors used for player scores. These work with light and dark themes. If more colors are needed, they are randomly generated using chroma.js.
+ */
 export const chartColors = [
   // Dark Colors
   '#C22D2D',
