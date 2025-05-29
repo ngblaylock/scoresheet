@@ -4,6 +4,7 @@
   import { onMount } from 'svelte';
   import type { IconName } from 'nathanblaylock.com/icons';
   import NavbarDevOffcanvas from './NavbarDevOffcanvas.svelte';
+  import { getDeviceInfo } from '$lib';
 
   if (import.meta.hot) {
     import.meta.hot.accept(() => {
@@ -29,6 +30,9 @@
   function goBack() {
     return () => history.back();
   }
+
+  let deviceInfo = $state(getDeviceInfo());
+
 </script>
 
 {#if dev}
@@ -64,6 +68,16 @@
         About
       </a>
     </li>
+    {#if deviceInfo?.isIOSSafari && !deviceInfo?.isPWA}
+      <li>
+        <a
+          class={linkClass}
+          href="/install/ios/"
+        >
+          Install App
+        </a>
+      </li>
+    {/if}
     {#if showThemeSwitch}
       <li><hr class="dropdown-divider" /></li>
       <li>

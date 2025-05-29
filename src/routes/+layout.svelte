@@ -6,7 +6,9 @@
   import Favicons from './Favicons.svelte';
   import SeoMeta from './SeoMeta.svelte';
   import Navbar from './Navbar.svelte';
-  import DeviceDetection from './DeviceDetection.svelte';
+  import { getDeviceInfo } from '$lib';
+
+  let { children } = $props();
 
   onNavigate((navigation) => {
     if (!document.startViewTransition) return;
@@ -18,6 +20,8 @@
       });
     });
   });
+
+  let deviceInfo = $state(getDeviceInfo());
 </script>
 
 <Favicons />
@@ -25,13 +29,14 @@
 
 <div class="grid-bg"></div>
 <div class="outer-flex-container">
-  <div class="inner-flex-container">
+  <div
+    class="inner-flex-container"
+    class:pb-5={deviceInfo?.isIOSSafari && deviceInfo?.isPWA}
+  >
     <Navbar />
-    <slot />
+    {@render children()}
   </div>
 </div>
-
-<DeviceDetection />
 
 <style lang="scss">
   .grid-bg {
