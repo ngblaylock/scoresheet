@@ -1,6 +1,6 @@
 <script lang="ts">
   import { dev } from '$app/environment';
-  const beta = true; // set to false if you aren't working on a new major version
+  const beta = false; // set to true if you are working on a new major version
 </script>
 
 <svelte:head>
