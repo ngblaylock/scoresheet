@@ -40,21 +40,21 @@
       "sizes": "1280x720",
       "type": "image/jpg",
       "form_factor": "wide",
-      "label": "During a game, view the current standings in a table format."
+      "label": "Add scores for each round."
     },
     {
       "src": "/img/screenshots/screenshot-1280-720-3.jpg",
       "sizes": "1280x720",
       "type": "image/jpg",
       "form_factor": "wide",
-      "label": "During a game, view the current standings in a chart format."
+      "label": "During a game, view the current standings in a table format."
     },
     {
       "src": "/img/screenshots/screenshot-1280-720-4.jpg",
       "sizes": "1280x720",
       "type": "image/jpg",
       "form_factor": "wide",
-      "label": "Add scores for each round."
+      "label": "During a game, view the current standings in a chart format."
     },
     {
       "src": "/img/screenshots/screenshot-1280-720-5.jpg",
@@ -75,21 +75,21 @@
       "sizes": "375x812",
       "type": "image/jpg",
       "form_factor": "narrow",
-      "label": "During a game, view the current standings in a table format."
+      "label": "Add scores for each round."
     },
     {
       "src": "/img/screenshots/screenshot-375-812-3.jpg",
       "sizes": "375x812",
       "type": "image/jpg",
       "form_factor": "narrow",
-      "label": "During a game, view the current standings in a chart format."
+      "label": "During a game, view the current standings in a table format."
     },
     {
       "src": "/img/screenshots/screenshot-375-812-4.jpg",
       "sizes": "375x812",
       "type": "image/jpg",
       "form_factor": "narrow",
-      "label": "Add scores for each round."
+      "label": "During a game, view the current standings in a chart format."
     },
     {
       "src": "/img/screenshots/screenshot-375-812-5.jpg",
