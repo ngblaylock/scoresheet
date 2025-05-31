@@ -1,41 +1,66 @@
 {
-	"name": "scoresheet",
-	"version": "1.0.4",
-	"private": true,
-	"scripts": {
-		"dev": "vite dev --host",
-		"build": "vite build",
-		"preview": "vite preview --host",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"lint": "prettier --plugin-search-dir . --check . && eslint .",
-		"format": "prettier --plugin-search-dir . --write ."
-	},
-	"devDependencies": {
-		"@sveltejs/adapter-auto": "next",
-		"@sveltejs/adapter-static": "^1.0.0-next.48",
-		"@sveltejs/kit": "next",
-		"@types/lodash": "^4.14.187",
-		"@types/sortablejs": "^1.15.0",
-		"@typescript-eslint/eslint-plugin": "^5.27.0",
-		"@typescript-eslint/parser": "^5.27.0",
-		"autoprefixer": "^10.4.12",
-		"eslint": "^8.16.0",
-		"eslint-config-prettier": "^8.3.0",
-		"eslint-plugin-svelte3": "^4.0.0",
-		"lodash": "^4.17.21",
-		"postcss": "^8.4.18",
-		"prettier": "^2.6.2",
-		"prettier-plugin-svelte": "^2.7.0",
-		"sass": "^1.55.0",
-		"sortablejs": "^1.15.0",
-		"svelte": "^3.44.0",
-		"svelte-check": "^2.7.1",
-		"svelte-preprocess": "^4.10.7",
-		"tailwindcss": "^3.1.8",
-		"tslib": "^2.3.1",
-		"typescript": "^4.7.4",
-		"vite": "^3.1.0"
-	},
-	"type": "module"
+  "name": "scoresheet",
+  "private": true,
+  "version": "2.0.0",
+  "license": "MIT",
+  "type": "module",
+  "description": "A PWA that handles the math for each scoring round during a card game. It is designed to be as general-purpose as possible. The app is optimized for mobile devices and can be \"installed\" by adding a shortcut to your device's home screen.",
+  "author": "Nathan Blaylock (https://nathanblaylock.com)",
+  "homepage": "https://scoresheet.nathanblaylock.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ngblaylock/scoresheet"
+  },
+  "bugs": {
+    "url": "https://github.com/ngblaylock/scoresheet/issues"
+  },
+  "keywords": [
+    "scoresheet",
+    "card-games",
+    "PWA",
+    "Svelte",
+    "score-tracker",
+    "game-night",
+    "mobile"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "dev": "vite dev --open --host",
+    "build": "vite build",
+    "preview": "vite preview --host",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "format": "prettier --write .",
+    "lint": "prettier --check .",
+    "postinstall": "cp -f ./node_modules/nathanblaylock.com/.vscode/nathanblaylock.code-snippets .vscode/"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-auto": "^3.0.0",
+    "@sveltejs/adapter-static": "^3.0.8",
+    "@sveltejs/kit": "^2.0.0",
+    "@sveltejs/vite-plugin-svelte": "^4.0.0",
+    "@types/chroma-js": "^3.1.1",
+    "@types/lodash-es": "^4.17.12",
+    "@types/node": "^22.13.0",
+    "chart.js": "^4.4.8",
+    "chroma-js": "^3.1.2",
+    "lodash-es": "^4.17.21",
+    "nanoid": "^5.1.3",
+    "nathanblaylock.com": "github:ngblaylock/nathanblaylock.com#v2.3.7",
+    "prettier": "^3.3.2",
+    "prettier-plugin-svelte": "^3.2.6",
+    "sass": "^1.83.4",
+    "svelte": "^5.0.0",
+    "svelte-check": "^4.0.0",
+    "svelte-preprocess": "^6.0.3",
+    "typescript": "^5.0.0",
+    "unplugin-svelte-components": "^0.3.1",
+    "vite": "^5.4.11"
+  },
+  "dependencies": {
+    "animate.css": "^4.1.1",
+    "bowser": "^2.11.0"
+  }
 }

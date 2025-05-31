@@ -1,31 +1,39 @@
-# Scoresheet App
+# Scoresheet
 
-Scoresheet is designed and maintained by Nathan Blaylock. It's primary purpose was primarily to learn Svelte/SvelteKit and Tailwind while creating an app that would actually be used by friends and family. 
+Visit [https://scoresheet.nathanblaylock.com](https://scoresheet.nathanblaylock.com) for the published web app.
 
-The purpose of this app is to do the math for each scoring round during a card game. It is designed to be as general purpose as possible. The app is designed for mobile devices and can be "installed" by creating a shortcut on your device home screen.
+**Scoresheet** is designed and maintained by Nathan Blaylock. It began as an opportunity to learn Svelte, SvelteKit, and Tailwind. Since then, it has evolved away from Tailwind in favor of a personally branded CSS system built on top of Bootstrap. It is frequently used by friends and family.
 
-To open the app, visit https://scoresheet.nathanblaylock.com.
+Version 2 includes several new features, such as editing scores and players, a graph view, and a victory podium.
 
-## Developing
+The purpose of this app is to handle the math for each scoring round during a card game. It is designed to be as general-purpose as possible. The app is optimized for mobile devices and can be "installed" by adding a shortcut to your device's home screen.
 
-Once you've run `npm install` start a development server:
+This application is free to use — it doesn’t cost me anything to build or maintain. My working tagline is: **“Add your scores without the ads!”**
 
-```bash
-npm run dev
-# Use the Network option to view it on your phone
+Bug reports or feature suggestions can be submitted by creating an [issue on GitHub](https://github.com/ngblaylock/scoresheet/issues) or by contacting me through [my website](https://nathanblaylock.com/contact/).
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+---
 
-## Releasing
+## Features
 
-1. Test the app in dev mode.
-2. Make sure to update the version in `package.json`.
-3. Run `npm run build` which will build to the `docs` directory.
-4. Run `npm run preview` to test the app in production mode.
-5. Commit with the message `v1.x.x`; x is the next number.
-6. Push to the remote repo.
-7. Merge in to the master branch.
-8. In GitHub create a new release and tag with the version number; `v1.x.x`.
-9. Close the issue in GitHub.
+- Add and edit players at any time during a game
+- Change the score determinate (highest or lowest score wins) mid-game
+- Edit scores by player or by round
+- Switch between a table and a chart view to visualize player rankings
+- End a game to display a victory podium, with table and chart views still available
+- Restart a game with the same set of players pre-filled
+- Toggle between light and dark mode
+
+---
+
+## Tech Stack
+
+- [Svelte & SvelteKit](https://svelte.dev/)
+- Custom CSS system built on [Bootstrap](https://getbootstrap.com/)
+- Progressive Web App (PWA) capabilities
+
+---
+
+## License
+
+This project is licensed under the [MIT License](./LICENSE).

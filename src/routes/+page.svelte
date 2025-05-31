@@ -1,48 +1,31 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
-	import { onMount } from 'svelte';
+  import { onMount } from 'svelte';
+  import { goto } from '$app/navigation';
+  import ScoresheetSvg from './ScoresheetSvg.svelte';
 
-	onMount(() => {
-		setTimeout(() => {
-			goto('/setup', { replaceState: false });
-		}, 2000);
-	});
+  onMount(() => {
+    setTimeout(() => {
+      goto('/setup', { replaceState: true });
+    }, 1500);
+  });
 </script>
 
-<div class="h-full bg-dark">
-	<img src="/logo.svg" alt="" class="max-w-[100px] mx-auto mt-24 mb-4" />
-
-	<h1 class="text-4xl text-light text-center">Scoresheet</h1>
-	<img src="/underline.svg" alt="" class="max-w-[300px] mx-auto mt-2" />
-
-	<div class="loader" />
+<div class="splashscreen pb-6 z-3">
+  <ScoresheetSvg />
 </div>
 
 <style lang="scss">
-	.loader {
-		background: white;
-		height: 4px;
-		width: 50%;
-		margin: 0 auto;
-		margin-top: 48px;
-		border-radius: 4px;
-		position: relative;
-		&:after {
-			content: '';
-			background: #af8c8c;
-			height: 4px;
-			display: block;
-			animation-name: load;
-			animation-duration: 2s;
-			animation-timing-function: ease-in-out;
-		}
-	}
-	@keyframes load {
-		from {
-			width: 0%;
-		}
-		to {
-			width: 100%;
-		}
-	}
+  .splashscreen {
+    background: var(--bs-red-800);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+  }
 </style>

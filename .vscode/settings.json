@@ -1,24 +1,8 @@
 {
-  "actionButtons": {
-    "commands": [
-      {
-        "name": "Dev",
-        "command": "npm run dev",
-      }
-    ]
-  },
-  "path-autocomplete.pathMappings": {
-    "/": [
-      "${folder}/static",
-      "${folder}/src/routes",
-    ],
-  },
-  "search.exclude": {
-    "**/docs": true
-  },
   "cSpell.words": [
+    "scorekeeping",
     "Scoresheet",
-    "sortablejs",
-    "sveltekit"
+    "Skyjo",
+    "SVRZDR"
   ]
 }
